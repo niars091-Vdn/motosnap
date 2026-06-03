@@ -1,20 +1,6 @@
 {
   "framework": "nextjs",
-  "buildCommand": "next build",
-  "devCommand":   "next dev",
-  "installCommand": "pnpm install",
-  "regions": ["fra1"],
-  "headers": [
-    {
-      "source": "/api/(.*)",
-      "headers": [
-        { "key": "Access-Control-Allow-Origin",  "value": "https://motosnap.vercel.app" },
-        { "key": "Access-Control-Allow-Methods", "value": "GET,POST,PATCH,DELETE,OPTIONS" },
-        { "key": "Access-Control-Allow-Headers", "value": "Content-Type, Authorization" }
-      ]
-    }
-  ],
-  "rewrites": [
-    { "source": "/app", "destination": "/" }
-  ]
+  "installCommand": "npm install",
+  "buildCommand": "npm run build",
+  "regions": ["fra1"]
 }
