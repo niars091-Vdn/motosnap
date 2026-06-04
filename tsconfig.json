@@ -1,34 +1,27 @@
 {
-  "name": "motosnap",
-  "version": "1.0.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+  "compilerOptions": {
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "target": "ES6",
+    "skipLibCheck": true,
+    "strict": false,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "incremental": true,
+    "plugins": [{ "name": "next" }],
+    "paths": {
+      "@/*": ["./*"]
+    }
   },
-  "dependencies": {
-    "@anthropic-ai/sdk": "^0.39.0",
-    "@supabase/ssr": "^0.5.2",
-    "@supabase/supabase-js": "^2.47.0",
-    "@vercel/analytics": "^1.4.0",
-    "clsx": "^2.1.1",
-    "framer-motion": "^12.0.0",
-    "lucide-react": "^0.400.0",
-    "next": "15.3.0",
-    "next-themes": "^0.4.6",
-    "react": "^19",
-    "react-dom": "^19",
-    "tailwind-merge": "^3.3.1",
-    "web-push": "^3.6.7"
-  },
-  "devDependencies": {
-    "@types/node": "^22",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "@types/web-push": "^3.6.3",
-    "postcss": "^8.5",
-    "tailwindcss": "^3.4.0",
-    "typescript": "^5.7.3"
-  }
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": ["node_modules", "backend"]
 }
