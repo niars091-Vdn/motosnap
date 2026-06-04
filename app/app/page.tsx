@@ -1,5 +1,10 @@
-import { redirect } from 'next/navigation'
-
 export default function Home() {
-  redirect('/login')
+  return (
+    <html>
+      <head>
+        <meta httpEquiv="refresh" content="0; url=/login" />
+      </head>
+      <body></body>
+    </html>
+  )
 }
