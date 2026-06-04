@@ -300,3 +300,4 @@ function friendlyError(msg: string): string {
   if (msg.includes('rate limit'))                 return '⏳ Troppi tentativi — aspetta qualche minuto'
   return msg
 }
+
