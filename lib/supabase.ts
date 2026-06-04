@@ -1,7 +1,7 @@
 import { createBrowserClient } from '@supabase/ssr'
 import { createClient as createSupabaseAdmin } from '@supabase/supabase-js'
 
-const SUPABASE_URL  = process.env.NEXT_PUBLIC_SUPABASE_URL!
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL!
 const SUPABASE_ANON = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 
 export function createClient() {
@@ -14,8 +14,20 @@ export async function createServerSupabase() {
   const cookieStore = await cookies()
   return createServerClient(SUPABASE_URL, SUPABASE_ANON, {
     cookies: {
-      getAll: () => cookieStore.getAll(),
-      setAll: (list) => list.forEach(({ name, value, options }) =>
-        cookieStore.set(name, value, options)
-      ),
-    },
+      getAll() {
+        return cookieStore.getAll()
+      },
+      setAll(list) {
+        list.forEach(function(item) {
+          cookieStore.set(item.name, item.value, item.options)
+        })
+      }
+    }
+  })
+}
+
+export const adminClient = createSupabaseAdmin(
+  SUPABASE_URL,
+  process.env.SUPABASE_SERVICE_ROLE_KEY!,
+  { auth: { autoRefreshToken: false, persistSession: false } }
+)
