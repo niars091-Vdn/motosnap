@@ -5,6 +5,7 @@ const PUBLIC_PATHS = ['/', '/login', '/register', '/api/webhooks']
 const ADMIN_PATHS  = ['/dashboard']
 
 export async function middleware(request: NextRequest) {
+  return NextResponse.next()
   const { pathname } = request.nextUrl
   const response = NextResponse.next({
     request: { headers: request.headers },
