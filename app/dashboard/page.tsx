@@ -33,6 +33,20 @@ export default function Dashboard() {
   const [costByDay,   setCostByDay]   = useState<{ created_at: string; cost_usd: number }[]>([])
   const [loading,     setLoading]     = useState(true)
   const [tab,         setTab]         = useState<'overview' | 'scans' | 'users' | 'bikes'>('overview')
+  const [authed, setAuthed] = useState(false)
+  const [pwInput, setPwInput] = useState('')
+  const [pwErr, setPwErr] = useState(false)
+
+  const checkPw = async () => {
+    const r = await fetch('/api/dashboard-auth', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password: pwInput }),
+    })
+    const d = await r.json()
+    if (d.ok) { setAuthed(true); setPwErr(false) }
+    else setPwErr(true)
+  }
 
   useEffect(() => {
     fetch('/api/admin/stats')
@@ -46,7 +60,26 @@ export default function Dashboard() {
   }, [])
 
   const logout = async () => { await supabase.auth.signOut(); router.push('/login') }
-
+if (!authed) return (
+    <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: LIGHT, fontFamily: 'sans-serif' }}>
+      <div style={{ background: '#fff', borderRadius: 16, padding: 32, width: 320, boxShadow: '0 8px 32px rgba(0,0,0,.12)' }}>
+        <div style={{ fontWeight: 800, fontSize: 18, color: '#1a2e1a', marginBottom: 6, textAlign: 'center' }}>🔒 Dashboard MotoSnap</div>
+        <div style={{ fontSize: 13, color: '#888', marginBottom: 20, textAlign: 'center' }}>Inserisci la password admin</div>
+        <input
+          type="password"
+          value={pwInput}
+          onChange={e => setPwInput(e.target.value)}
+          onKeyDown={e => e.key === 'Enter' && checkPw()}
+          placeholder="Password"
+          style={{ width: '100%', padding: '12px 14px', border: '1.5px solid #ddd', borderRadius: 10, fontSize: 14, marginBottom: 10, outline: 'none' }}
+        />
+        {pwErr && <div style={{ color: '#c83020', fontSize: 12, fontWeight: 600, marginBottom: 10 }}>Password errata</div>}
+        <button onClick={checkPw} style={{ width: '100%', padding: 13, background: GREEN, color: '#fff', border: 'none', borderRadius: 100, cursor: 'pointer', fontWeight: 700, fontSize: 14 }}>
+          Entra
+        </button>
+      </div>
+    </div>
+  )
   if (loading) return (
     <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: LIGHT, fontFamily: 'sans-serif', color: '#666' }}>
       Caricamento dashboard…
