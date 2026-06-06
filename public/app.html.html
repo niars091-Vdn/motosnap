@@ -949,8 +949,6 @@ document.getElementById('fGal').addEventListener('change',function(){handleFile(
 
 /* ═══ ANALYZE ═══ */
 async function analyze(){
-  const k=localStorage.getItem('motoid_api_key');
-  if(!k){showErr('Chiave API mancante — vai su <svg class="lucide" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg> Profilo per configurarla.');return;}
   if(!b64)return;
   document.getElementById('btnScan').classList.remove('on');
   document.getElementById('loadDiv').classList.add('on');
@@ -960,30 +958,20 @@ async function analyze(){
   document.getElementById('confirmDiv').style.display='none';
   document.querySelectorAll('.l-s').forEach(el=>{el.style.animation='none';void el.offsetWidth;el.style.animation='';});
   try{
-    const res=await fetch('https://api.anthropic.com/v1/messages',{
+    const res=await fetch('/api/scan',{
       method:'POST',
-      headers:{'Content-Type':'application/json','x-api-key':k,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
-      body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:700,messages:[{role:'user',content:[
-        {type:'image',source:{type:'base64',media_type:'image/jpeg',data:b64}},
-        {type:'text',text:`Identifica questa moto. SOLO JSON valido senza testo extra.
-Se sicuro (confidence>=80): {"found":true,"brand":"MARCA","model":"Modello","year":"anno","category":"Naked|Sportiva|Enduro|Cruiser|Touring|Scrambler|Adventure|Scooter","displacement":"cilindrata","confidence":88,"description":"2 frasi in italiano.","alternatives":[]}
-Se incerto (confidence<80): includi alternatives con fino a 2 opzioni nello stesso schema (senza alternatives annidate).
-Se non è una moto: {"found":false,"reason":"spiegazione"}`}
-      ]}]})
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({image:b64})
     });
-    if(!res.ok){const e=await res.json().catch(()=>({}));showErr(res.status===401?'Chiave API non valida.':'Errore API: '+(e?.error?.message||res.status));return;}
+    if(!res.ok){const e=await res.json().catch(()=>({}));showErr('Errore: '+(e?.error||res.status));return;}
     const data=await res.json();
-    const txt=(data.content||[]).map(b=>b.text||'').join('').trim();
-    const m=txt.match(/\{[\s\S]*\}/);
-    if(!m){showErr('Risposta non valida. Riprova con foto più nitida.');return;}
-    curResult=JSON.parse(m[0]);
+    curResult=data.result||data;
     scanCount++;localStorage.setItem('msai_scans',scanCount);
     showConfirm(curResult);
   }catch(e){showErr(e.name==='TypeError'?'Errore di rete.':'Errore: '+e.message);}
   document.getElementById('loadDiv').classList.remove('on');
   document.getElementById('scanOv').classList.remove('on');
 }
-
 /* ═══ CONFIRM ═══ */
 function showConfirm(r){
   if(!r.found){showErr('<svg class="lucide" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg> '+r.reason);document.getElementById('btnScan').classList.add('on');return;}
