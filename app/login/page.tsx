@@ -83,8 +83,10 @@ export default function LoginPage() {
     setSuccess('✅ Email per il reset inviata!')
   }
 
-const canSubmit = true
-
+const canSubmit = tab === 'magic'
+  ? email.includes('@')
+  : email.includes('@') && password.length >= 6
+  
   return (
     <div style={{
       minHeight: '100dvh',
