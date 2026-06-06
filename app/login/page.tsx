@@ -22,11 +22,15 @@ export default function LoginPage() {
 
   const handleLogin = async () => {
     reset(); setLoading('email')
-    const { error } = await supabase.auth.signInWithPassword({ email, password })
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password })
     setLoading(null)
     if (error) { setError(friendlyError(error.message)); return }
-    router.push('/')
-  }
+    if (data.session) {
+      window.location.href = '/dashboard'
+    } else {
+      setError('Login fallito. Riprova.')
+    }
+}
 
   const handleRegister = async () => {
     reset()
