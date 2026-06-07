@@ -1357,6 +1357,42 @@ function resetScan(){
   document.getElementById('rBar').style.width='0%';
   window.scrollTo({top:0,behavior:'smooth'});
 }
+
+  /* ═══ COOKIE + ETÀ + PRIVACY ═══ */
+(function(){
+  function addLegalUI(){
+    if(document.getElementById('legalWrap'))return;
+    const wrap=document.createElement('div');
+    wrap.id='legalWrap';
+    wrap.innerHTML=`
+      <div id="ageGate" style="display:none;position:fixed;inset:0;z-index:9000;background:rgba(0,0,0,.75);align-items:center;justify-content:center;padding:20px;">
+        <div style="background:#fff;border-radius:18px;padding:28px 22px;max-width:340px;width:100%;text-align:center;font-family:sans-serif;">
+          <div style="font-size:40px;margin-bottom:12px;">🏍️</div>
+          <div style="font-weight:800;font-size:19px;color:#111;margin-bottom:8px;">Benvenuto su MotoScan AI</div>
+          <div style="font-size:13px;color:#555;line-height:1.6;margin-bottom:18px;">Per usare il servizio devi avere almeno <b>16 anni</b> (Regolamento Privacy UE, art. 8).</div>
+          <button onclick="legalAgeOk()" style="width:100%;padding:14px;background:#1a7a4a;color:#fff;border:none;border-radius:100px;font-weight:700;font-size:14px;cursor:pointer;margin-bottom:8px;">Ho 16 anni o più</button>
+          <button onclick="legalAgeNo()" style="width:100%;padding:11px;background:#fff;border:1.5px solid #ddd;color:#888;border-radius:100px;font-weight:700;font-size:13px;cursor:pointer;">Ho meno di 16 anni</button>
+          <div style="font-size:10px;color:#aaa;margin-top:12px;line-height:1.5;">Accedendo accetti <a href="/privacy" target="_blank" style="color:#1a7a4a;">Privacy</a> e <a href="/terms" target="_blank" style="color:#1a7a4a;">Termini</a></div>
+        </div>
+      </div>
+      <div id="cookieBar" style="display:none;position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;z-index:8000;background:#fff;border-top:2px solid #1a7a4a;padding:16px 18px 20px;box-shadow:0 -4px 24px rgba(0,0,0,.15);font-family:sans-serif;">
+        <div style="font-weight:700;font-size:14px;color:#111;margin-bottom:6px;">🍪 Cookie</div>
+        <div style="font-size:12px;color:#555;line-height:1.6;margin-bottom:12px;">Usiamo solo cookie tecnici necessari al funzionamento. Nessuna profilazione. <a href="/privacy" target="_blank" style="color:#1a7a4a;font-weight:700;">Privacy Policy</a></div>
+        <button onclick="legalCookieOk()" style="width:100%;padding:12px;background:#1a7a4a;color:#fff;border:none;border-radius:100px;font-weight:700;font-size:13px;cursor:pointer;">Ho capito</button>
+      </div>`;
+    document.body.appendChild(wrap);
+  }
+  window.legalAgeOk=function(){localStorage.setItem('msai_age','1');document.getElementById('ageGate').style.display='none';if(!localStorage.getItem('msai_cookie'))setTimeout(function(){document.getElementById('cookieBar').style.display='block';},400);};
+  window.legalAgeNo=function(){document.body.innerHTML='<div style="min-height:100dvh;display:flex;align-items:center;justify-content:center;background:#eef0ec;font-family:sans-serif;text-align:center;padding:24px;"><div><div style="font-size:48px;">🏍️</div><h2 style="color:#111;margin:12px 0 8px;">MotoScan AI</h2><p style="color:#666;max-width:280px;line-height:1.6;">Servizio riservato a chi ha almeno 16 anni.</p></div></div>';};
+  window.legalCookieOk=function(){localStorage.setItem('msai_cookie','1');document.getElementById('cookieBar').style.display='none';};
+  function initLegal(){
+    addLegalUI();
+    if(!localStorage.getItem('msai_age')){document.getElementById('ageGate').style.display='flex';}
+    else if(!localStorage.getItem('msai_cookie')){document.getElementById('cookieBar').style.display='block';}
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initLegal);
+  else initLegal();
+})();
 </script>
 </body>
 </html>
