@@ -26,7 +26,7 @@ export default function LoginPage() {
     setLoading(null)
     if (error) { setError(friendlyError(error.message)); return }
     if (data.session) {
-      window.location.href = '/dashboard'
+      window.location.href = '/app.html.html'
     } else {
       setError('Login fallito. Riprova.')
     }
