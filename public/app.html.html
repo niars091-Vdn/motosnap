@@ -225,7 +225,21 @@ input:checked+.tog-sl::before{transform:translateX(18px);}
 
 /* ═══ HELMET SVG (reusable) ═══ */
 .helmet-sm{display:block;filter:drop-shadow(0 4px 12px rgba(0,0,0,.1)) drop-shadow(0 1px 3px rgba(0,0,0,.08));}
-
+/* ═══ OFFERTE PARTNER ═══ */
+.offerte-scroll{display:flex;gap:12px;overflow-x:auto;scrollbar-width:none;padding:2px 2px 14px;margin-bottom:6px;}
+.offerte-scroll::-webkit-scrollbar{display:none;}
+.offerta-card{flex-shrink:0;width:160px;background:var(--bg2);border-radius:18px;overflow:hidden;box-shadow:var(--card-shadow);border:1px solid var(--bd);cursor:pointer;transition:transform .15s ease;}
+.offerta-card:active{transform:scale(.97);}
+.offerta-img{position:relative;aspect-ratio:16/11;background:var(--bg3);overflow:hidden;}
+.offerta-img img{width:100%;height:100%;object-fit:cover;}
+.offerta-disc{position:absolute;top:8px;left:8px;background:var(--red);color:#fff;font-family:'Inter',sans-serif;font-size:11px;font-weight:800;letter-spacing:.04em;padding:3px 9px;border-radius:8px;}
+.offerta-scad{position:absolute;bottom:8px;left:8px;right:8px;background:rgba(0,0,0,.6);color:#fff;font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 7px;border-radius:6px;text-align:center;}
+.offerta-body{padding:10px 11px 12px;}
+.offerta-shop{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--tx3);margin-bottom:4px;}
+.offerta-name{font-family:'Inter',sans-serif;font-size:13px;font-weight:700;color:var(--tx);line-height:1.3;margin-bottom:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:34px;}
+.offerta-price{font-family:'Inter Tight',sans-serif;font-size:18px;font-weight:800;color:var(--red);letter-spacing:-.01em;}
+.offerta-old{font-size:11px;font-weight:600;color:var(--tx3);text-decoration:line-through;margin-left:5px;}
+  
 /* ═══ SCAN SCREEN ═══ */
 .scan-hero{
   background:
@@ -495,6 +509,8 @@ input:checked+.tog-sl::before{transform:translateX(18px);}
 <!-- ═══ SCAN ═══ -->
 <div class="scr on" id="sScan">
   <div id="uploadSec">
+    <div class="sec" style="margin-top:4px;"><span class="sec-t">OFFERTE PARTNER</span><div class="sec-line"></div></div>
+    <div class="offerte-scroll" id="offerteScroll"></div>
     <div class="scan-hero">
       <!-- Icona diaframma in hero -->
       <div class="scan-hero-helmet">
@@ -753,10 +769,18 @@ function ic(name, size){
   return '<svg class="lucide" viewBox="0 0 24 24" width="'+s+'" height="'+s+'" aria-hidden="true">'+p+'</svg>';
 }
 window.ic = ic;
-
+  
+/* ═══ OFFERTE PARTNER (esempi - sostituire con offerte reali dopo accordi) ═══ */
+const OFFERTE=[
+  {n:'Casco AGV K6 S',sh:'Caschi.net',p:'349',op:'429',d:'-19%',img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80',scad:'Scade tra 3 giorni'},
+  {n:'Olio Motul 7100 10W40',sh:'RWN Moto',p:'22.90',op:'28',d:'-18%',img:'https://images.unsplash.com/photo-1615906655593-ad0386982a0f?w=400&q=80',scad:'Offerta del mese'},
+  {n:'Giacca Dainese Hydra Flux',sh:'Motoabbigliamento',p:'289',op:'350',d:'-17%',img:'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=400&q=80',scad:'Ultimi pezzi'},
+  {n:'Scarico Akrapovic Slip-On',sh:'Reparto Corse',p:'589',op:'689',d:'-15%',img:'https://images.unsplash.com/photo-1558969479-b0e5e31fa25a?w=400&q=80',scad:'Promo lancio'},
+];
 /* ═══════════════════════
    DATA
 ═══════════════════════ */
+  
 const PRODS={
   ricambi:[
     {id:'r1',n:'Catena DID 520VX3 X-Ring',sh:'RWN Moto',si:'<svg class="lucide" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-1.8-.3 1.6 1.6 0 0 0-1 1.5V21a2 2 0 0 1-4 0v-.1a1.6 1.6 0 0 0-1-1.5 1.6 1.6 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0 .3-1.8 1.6 1.6 0 0 0-1.5-1H3a2 2 0 0 1 0-4h.1a1.6 1.6 0 0 0 1.5-1 1.6 1.6 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.6 1.6 0 0 0 1.8.3h.1a1.6 1.6 0 0 0 1-1.5V3a2 2 0 0 1 4 0v.1a1.6 1.6 0 0 0 1 1.5 1.6 1.6 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0-.3 1.8v.1a1.6 1.6 0 0 0 1.5 1H21a2 2 0 0 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1z"/></svg>',p:'48.90',op:'62.00',d:'-21%',r:4.7,rv:312,img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80',url:'https://www.rwn-moto.it',desc:'X-Ring alte prestazioni.',sp:[{k:'Tipo',v:'X-Ring'},{k:'Passo',v:'520'}]},
@@ -849,7 +873,7 @@ window.addEventListener('DOMContentLoaded',()=>{
   quizIdx=parseInt(localStorage.getItem('msai_quizIdx')||'0')%QUIZ.length;
   notifications=JSON.parse(localStorage.getItem('msai_notifs')||'[]');
   if(!notifications.length)seedNotifications();
-  renderCommunity();renderBrandTabs();renderQuiz();renderNews();updateStats();updateBadge();checkMaintAlerts();
+  renderOfferte();renderCommunity();renderBrandTabs();renderQuiz();renderNews();updateStats();updateBadge();checkMaintAlerts();
   if(Notification?.permission==='granted')scheduleNotifications();
 });
 
@@ -1178,6 +1202,24 @@ function filterBrand(brand){
   secT.textContent=brand==='all'?'TUTTE LE DOMANDE':brand.toUpperCase();
   renderCommunity();
 }
+function renderOfferte(){
+  const el=document.getElementById('offerteScroll');
+  if(!el)return;
+  el.innerHTML=OFFERTE.map(o=>`
+    <div class="offerta-card">
+      <div class="offerta-img">
+        <img src="${o.img}" loading="lazy" alt="" onerror="this.src='https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=400&q=80'">
+        ${o.d?`<span class="offerta-disc">${o.d}</span>`:''}
+        ${o.scad?`<span class="offerta-scad">${o.scad}</span>`:''}
+      </div>
+      <div class="offerta-body">
+        <div class="offerta-shop">${o.sh}</div>
+        <div class="offerta-name">${o.n}</div>
+        <div><span class="offerta-price">${o.p}€</span>${o.op?`<span class="offerta-old">${o.op}€</span>`:''}</div>
+      </div>
+    </div>`).join('');
+}
+  
 function renderCommunity(){
   const filtered=activeBrand==='all'?posts:posts.filter(p=>p.brand===activeBrand);
   document.getElementById('qaList').innerHTML=filtered.map((p,pi)=>{
