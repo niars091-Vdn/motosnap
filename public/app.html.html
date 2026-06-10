@@ -635,9 +635,10 @@ input:checked+.tog-sl::before{transform:translateX(18px);}
 <!-- ═══ PROFILO ═══ -->
 <div class="scr" id="sProfilo">
   <div class="prof-hdr">
-    <div class="prof-av">M</div>
-    <div class="prof-name">Motociclista</div>
-    <div style="font-size:11px;font-weight:600;letter-spacing:.08em;color:var(--tx3);margin-top:4px">Benvenuto su MotoShot AI</div>
+    <div class="prof-av" id="profAv">M</div>
+    <div class="prof-name" id="profName">Motociclista</div>
+    <div id="profEmail" style="font-size:11px;font-weight:600;letter-spacing:.08em;color:var(--tx3);margin-top:4px">Benvenuto su MotoShot AI</div>
+    <button onclick="logout()" style="margin-top:14px;padding:9px 22px;background:transparent;border:1.5px solid var(--bd);border-radius:100px;cursor:pointer;font-family:'Inter Tight',sans-serif;font-size:13px;font-weight:700;letter-spacing:.04em;color:var(--red);">Esci</button>
   </div>
   <div class="stats-row">
     <div class="pstat card"><div class="pstat-v" id="stScans">0</div><div class="pstat-l">Scansioni</div></div>
@@ -830,6 +831,12 @@ let notifications=[];
 
 /* ═══ INIT ═══ */
 window.addEventListener('DOMContentLoaded',()=>{
+  // Login obbligatorio: se non loggato, vai al login
+  sb.auth.getSession().then(({data})=>{
+    if(!data.session){ window.location.href='/login'; return; }
+    window.__user = data.session.user;
+    renderProfile();
+  });
   if(localStorage.getItem('msai_theme')==='dark'){isDark=true;applyTheme();}
   const k=localStorage.getItem('motoid_api_key');
   if(k)document.getElementById('keyInp').value='••••••••••••';
@@ -1243,7 +1250,19 @@ function timeAgoMs(d){if(!d)return'';const m=(Date.now()-new Date(d))/60000;if(m
 /* ═══ API KEY ═══ */
 function saveKey(){const v=document.getElementById('keyInp').value.trim();if(!v.startsWith('sk-ant-')){showKS('Chiave non valida — deve iniziare con sk-ant-',false);return;}localStorage.setItem('motoid_api_key',v);showKS('<svg class="lucide" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg> Chiave salvata! AI attiva.',true);}
 function showKS(msg,ok){const el=document.getElementById('keyStatus');el.textContent=msg;el.className='key-s '+(ok?'ok':'err');}
-function updateStats(){document.getElementById('stScans').textContent=scanCount;document.getElementById('stBikes').textContent=garage.length;document.getElementById('stStreak').textContent=streak;}
+function renderProfile(){
+  const u = window.__user; if(!u) return;
+  const email = u.email || '';
+  const name = (u.user_metadata && u.user_metadata.full_name) || email.split('@')[0] || 'Motociclista';
+  document.getElementById('profName').textContent = name;
+  document.getElementById('profEmail').textContent = email;
+  document.getElementById('profAv').textContent = (name[0]||'M').toUpperCase();
+}
+async function logout(){
+  await sb.auth.signOut();
+  window.location.href='/login';
+}
+  function updateStats(){document.getElementById('stScans').textContent=scanCount;document.getElementById('stBikes').textContent=garage.length;document.getElementById('stStreak').textContent=streak;}
 
 /* ═══ NOTIFICATIONS ═══ */
 function seedNotifications(){
