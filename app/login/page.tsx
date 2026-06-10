@@ -90,50 +90,28 @@ const canSubmit = tab === 'magic'
   return (
     <div style={{
       minHeight: '100dvh',
-      background: 'linear-gradient(160deg,#eef0ec 0%,#e4e8df 100%)',
+      background: 'linear-gradient(160deg,#eef2f7 0%,#e3eaf3 100%)',
       display: 'flex', alignItems: 'center', justifyContent: 'center',
-      padding: 20, fontFamily: "'Inter','Rajdhani',sans-serif",
+      padding: 20, fontFamily: "'Inter',sans-serif",
     }}>
       <div style={{ width: '100%', maxWidth: 380 }}>
 
         {/* Logo */}
         <div style={{ textAlign: 'center', marginBottom: 28 }}>
-          <svg width="76" height="76" viewBox="0 0 200 200" fill="none"
-            style={{ margin: '0 auto 12px', display: 'block', filter: 'drop-shadow(0 8px 24px rgba(42,102,68,.25))' }}>
-            <rect width="200" height="200" rx="44" fill="#2a6644"/>
-            <rect width="200" height="200" rx="44" fill="url(#glg)" opacity=".15"/>
-            <defs>
-              <radialGradient id="glg" cx="35%" cy="25%" r="65%">
-                <stop stopColor="#fff"/><stop offset="1" stopColor="#fff" stopOpacity="0"/>
-              </radialGradient>
-            </defs>
-            <g stroke="#e8dfc8" strokeWidth="5" strokeLinecap="round" fill="none">
-              <circle cx="100" cy="90" r="62"/>
-              <line x1="100" y1="28" x2="62" y2="152"/><line x1="100" y1="28" x2="138" y2="152"/>
-              <line x1="38" y1="90" x2="152" y2="62"/><line x1="38" y1="90" x2="145" y2="128"/>
-              <line x1="162" y1="90" x2="55" y2="62"/><line x1="162" y1="90" x2="55" y2="128"/>
-            </g>
-            <g stroke="#e8dfc8" strokeWidth="5.5" strokeLinecap="round" strokeLinejoin="round" fill="none">
-              <circle cx="76" cy="148" r="22"/><circle cx="148" cy="148" r="18"/>
-              <path d="M76 148 L90 112 L118 108 L148 130 L148 148"/>
-              <path d="M90 112 L105 98 L126 100 L118 108"/>
-              <path d="M105 98 L108 82 L120 80 L118 96"/>
-            </g>
-            <text x="100" y="188" textAnchor="middle" fontFamily="Georgia,serif"
-              fontSize="21" fontWeight="700" fill="#e8dfc8">MotoSnap</text>
-          </svg>
-          <p style={{ fontSize: 13, color: '#6a8a6a', letterSpacing: '.04em' }}>Il tuo garage digitale</p>
+          <img src="/motoshot-logo-completo.png" alt="MotoShot AI"
+            style={{ width: 240, maxWidth: '80%', height: 'auto', margin: '0 auto 10px', display: 'block' }} />
+          <p style={{ fontSize: 13, color: '#6b7e94', letterSpacing: '.04em' }}>Il tuo garage digitale</p>
         </div>
 
         {/* Card */}
         <div style={{
           background: '#fff', borderRadius: 24,
-          boxShadow: '0 2px 0 #d0cec6, 0 12px 40px rgba(0,0,0,.1)',
+          boxShadow: '0 2px 0 #d4dfec, 0 12px 40px rgba(10,30,60,.1)',
           overflow: 'hidden',
         }}>
 
           {/* Tabs */}
-          <div style={{ display: 'flex', borderBottom: '1px solid #eee' }}>
+          <div style={{ display: 'flex', borderBottom: '1px solid #eef2f7' }}>
             {([
               { id: 'login'    as Tab, label: 'Accedi' },
               { id: 'register' as Tab, label: 'Registrati' },
@@ -142,8 +120,8 @@ const canSubmit = tab === 'magic'
               <button key={t.id} onClick={() => { setTab(t.id); reset() }} style={{
                 flex: 1, padding: '13px 4px', border: 'none', cursor: 'pointer',
                 fontWeight: 700, fontSize: 12, letterSpacing: '.04em', background: 'transparent',
-                color: tab === t.id ? '#2a6644' : '#aaa',
-                borderBottom: `2.5px solid ${tab === t.id ? '#2a6644' : 'transparent'}`,
+                color: tab === t.id ? '#E8431F' : '#aaa',
+                borderBottom: `2.5px solid ${tab === t.id ? '#E8431F' : 'transparent'}`,
                 transition: 'all .2s',
               }}>
                 {t.label}
@@ -189,7 +167,7 @@ const canSubmit = tab === 'magic'
             )}
 
             {tab === 'magic' && (
-              <p style={{ fontSize: 12, color: '#8a9a8a', margin: '0 0 14px', lineHeight: 1.6, fontWeight: 500 }}>
+              <p style={{ fontSize: 12, color: '#6b7e94', margin: '0 0 14px', lineHeight: 1.6, fontWeight: 500 }}>
                 Ricevi un link via email — nessuna password. Perfetto da mobile 📱
               </p>
             )}
@@ -202,12 +180,12 @@ const canSubmit = tab === 'magic'
               disabled={!canSubmit || !!loading}
               style={{
                 width: '100%', padding: '15px 0', marginTop: 4,
-                background: canSubmit && !loading ? '#2a6644' : '#c0c8c0',
+                background: canSubmit && !loading ? '#E8431F' : '#cbb5ac',
                 color: '#fff', border: 'none', borderRadius: 100,
                 cursor: canSubmit && !loading ? 'pointer' : 'not-allowed',
                 fontWeight: 800, fontSize: 15, letterSpacing: '.04em',
                 transition: 'all .2s',
-                boxShadow: canSubmit && !loading ? '0 4px 18px rgba(42,102,68,.28)' : 'none',
+                boxShadow: canSubmit && !loading ? '0 4px 18px rgba(232,67,31,.28)' : 'none',
               }}
             >
               {loading === 'email' || loading === 'magic' ? '…'
@@ -218,7 +196,7 @@ const canSubmit = tab === 'magic'
 
             {tab === 'login' && (
               <button onClick={handleForgotPassword}
-                style={{ width: '100%', marginTop: 10, padding: 8, background: 'transparent', border: 'none', cursor: 'pointer', fontSize: 12, color: '#8a9a8a', fontWeight: 600 }}>
+                style={{ width: '100%', marginTop: 10, padding: 8, background: 'transparent', border: 'none', cursor: 'pointer', fontSize: 12, color: '#6b7e94', fontWeight: 600 }}>
                 {loading === 'reset' ? '…' : 'Password dimenticata?'}
               </button>
             )}
@@ -226,12 +204,20 @@ const canSubmit = tab === 'magic'
             {tab === 'register' && (
               <p style={{ fontSize: 10, color: '#bbb', textAlign: 'center', marginTop: 12, lineHeight: 1.6 }}>
                 Registrandoti accetti i{' '}
-                <a href="/terms" style={{ color: '#2a6644' }}>Termini</a> e la{' '}
-                <a href="/privacy" style={{ color: '#2a6644' }}>Privacy Policy</a>
+                <a href="/terms" style={{ color: '#E8431F' }}>Termini</a> e la{' '}
+                <a href="/privacy" style={{ color: '#E8431F' }}>Privacy Policy</a>
               </p>
             )}
           </div>
         </div>
+
+        {/* Torna all'app senza login */}
+        <div style={{ textAlign: 'center', marginTop: 18 }}>
+          <a href="/app.html.html" style={{ fontSize: 13, color: '#6b7e94', fontWeight: 600, textDecoration: 'none' }}>
+            ← Continua senza accedere
+          </a>
+        </div>
+
       </div>
     </div>
   )
@@ -267,11 +253,11 @@ function Field({ placeholder, value, onChange, type, autoComplete }: {
       type={type} autoComplete={autoComplete}
       style={{
         display: 'block', width: '100%', marginBottom: 10, padding: '13px 14px',
-        background: '#f5f1eb', border: '1.5px solid #dddad4', borderRadius: 12,
+        background: '#f5f7fa', border: '1.5px solid #d4dfec', borderRadius: 12,
         fontSize: 14, fontWeight: 500, color: '#1a1a1a', outline: 'none', fontFamily: 'inherit',
       }}
-      onFocus={e => e.target.style.borderColor = '#2a6644'}
-      onBlur={e => e.target.style.borderColor = '#dddad4'}
+      onFocus={e => e.target.style.borderColor = '#E8431F'}
+      onBlur={e => e.target.style.borderColor = '#d4dfec'}
     />
   )
 }
@@ -279,9 +265,9 @@ function Field({ placeholder, value, onChange, type, autoComplete }: {
 function Divider({ label }: { label: string }) {
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14 }}>
-      <div style={{ flex: 1, height: 1, background: '#eee' }} />
+      <div style={{ flex: 1, height: 1, background: '#eef2f7' }} />
       <span style={{ fontSize: 11, color: '#bbb', fontWeight: 600, whiteSpace: 'nowrap' }}>{label}</span>
-      <div style={{ flex: 1, height: 1, background: '#eee' }} />
+      <div style={{ flex: 1, height: 1, background: '#eef2f7' }} />
     </div>
   )
 }
@@ -291,9 +277,9 @@ function Alert({ type, msg }: { type: 'error' | 'success'; msg: string }) {
   return (
     <div style={{
       marginBottom: 12, padding: '10px 13px', borderRadius: 10,
-      background: e ? 'rgba(200,50,50,.07)' : 'rgba(42,122,64,.07)',
-      border: `1px solid ${e ? 'rgba(200,50,50,.2)' : 'rgba(42,122,64,.2)'}`,
-      color: e ? '#b03020' : '#1a7a40', fontSize: 13, fontWeight: 600, lineHeight: 1.5,
+      background: e ? 'rgba(200,50,50,.07)' : 'rgba(0,163,122,.07)',
+      border: `1px solid ${e ? 'rgba(200,50,50,.2)' : 'rgba(0,163,122,.2)'}`,
+      color: e ? '#b03020' : '#00a37a', fontSize: 13, fontWeight: 600, lineHeight: 1.5,
     }}>{msg}</div>
   )
 }
@@ -306,4 +292,3 @@ function friendlyError(msg: string): string {
   if (msg.includes('rate limit'))                 return '⏳ Troppi tentativi — aspetta qualche minuto'
   return msg
 }
-
