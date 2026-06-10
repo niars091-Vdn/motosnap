@@ -96,7 +96,7 @@ button,a{font-size:inherit;}
 .hdr-logo{display:flex;align-items:center;gap:12px;}
 .logo-dark{display:none;}
 [data-theme=dark] .logo-light{display:none;}
-[data-theme=dark] .logo-dark{display:block;}
+[data-theme=dark] .logo-dark{display:inline-block;}
 .hdr-wordmark{}
 .hdr-name{font-family:'Inter Tight',sans-serif;font-weight:800;font-size:24px;letter-spacing:-.035em;line-height:1;color:var(--tx);}
 .hdr-name span{color:var(--red);}
@@ -481,8 +481,8 @@ input:checked+.tog-sl::before{transform:translateX(18px);}
 <!-- ═══ HEADER ═══ -->
 <div class="hdr">
   <div class="hdr-logo">
-  <img src="/logo-header.png.png" alt="MotoShot AI" class="logo-light" style="height:34px;width:auto;display:block;">
-  <img src="/motoshot-logo-header-ai-dark.png" alt="MotoShot AI" class="logo-dark" style="height:34px;width:auto;display:block;">
+  <img src="/logo-header.png.png" alt="MotoShot AI" class="logo-light" style="height:34px;width:auto;">
+  <img src="/motoshot-logo-header-ai-dark.png" alt="MotoShot AI" class="logo-dark" style="height:34px;width:auto;">
 </div>
   <div class="hdr-r">
     <div class="ico-btn notif-btn" onclick="openNotifPanel()" id="bellBtn"><svg class="lucide" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg><span class="notif-badge" id="notifBadge" style="display:none">0</span></div>
