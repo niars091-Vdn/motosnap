@@ -5,7 +5,7 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'MotoSnap — Identifica la tua moto',
+  title: 'MotoShot AI — Identifica la tua moto',
   description: 'Fotografa qualsiasi moto e scopri marca, modello e anno in secondi.',
 }
 
