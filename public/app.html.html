@@ -855,12 +855,6 @@ let notifications=[];
 
 /* ═══ INIT ═══ */
 window.addEventListener('DOMContentLoaded',()=>{
-  // Login obbligatorio: se non loggato, vai al login
-  sb.auth.getSession().then(({data})=>{
-    if(!data.session){ window.location.href='/login'; return; }
-    window.__user = data.session.user;
-    renderProfile();
-  });
   if(localStorage.getItem('msai_theme')==='dark'){isDark=true;applyTheme();}
   const k=localStorage.getItem('motoid_api_key');
   if(k)document.getElementById('keyInp').value='••••••••••••';
