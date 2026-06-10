@@ -662,33 +662,32 @@ input:checked+.tog-sl::before{transform:translateX(18px);}
     <div class="pstat card"><div class="pstat-v" id="stStreak">0</div><div class="pstat-l">Serie quiz</div></div>
   </div>
   <div class="card" style="padding:0 4px;margin-bottom:12px;">
-    <div class="setting" style="border-bottom:1px solid var(--bd);">
-      <span class="setting-i"><svg class="lucide" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></span>
-      <div><div class="setting-t">Modalità scura</div><div class="setting-s">Sfondo dark</div></div>
-      <label class="tog"><input type="checkbox" id="darkTog" onchange="toggleTheme()"><span class="tog-sl"></span></label>
+    <div class="setting" style="border-bottom:1px solid var(--bd);" onclick="window.open('/privacy','_blank')">
+      <span class="setting-i"><svg class="lucide" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+      <div><div class="setting-t">Privacy Policy</div><div class="setting-s">Come trattiamo i tuoi dati</div></div>
+      <span class="setting-arr">›</span>
     </div>
-    <div class="setting" style="border-bottom:1px solid var(--bd);">
-      <span class="setting-i"><svg class="lucide" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></span>
-      <div><div class="setting-t">Notifiche manutenzione</div><div class="setting-s">Promemoria tagliando</div></div>
-      <label class="tog"><input type="checkbox" id="nsMaint" checked onchange="saveNotifPrefs()"><span class="tog-sl"></span></label>
+    <div class="setting" style="border-bottom:1px solid var(--bd);" onclick="window.open('/terms','_blank')">
+      <span class="setting-i"><svg class="lucide" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></svg></span>
+      <div><div class="setting-t">Termini di Servizio</div><div class="setting-s">Condizioni d'uso dell'app</div></div>
+      <span class="setting-arr">›</span>
     </div>
-    <div class="setting" style="border-bottom:1px solid var(--bd);">
-      <span class="setting-i"><svg class="lucide" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></span>
-      <div><div class="setting-t">Alert prezzi wishlist</div><div class="setting-s">Avviso calo prezzi</div></div>
-      <label class="tog"><input type="checkbox" id="nsOffers" checked onchange="saveNotifPrefs()"><span class="tog-sl"></span></label>
+    <div class="setting" style="border-bottom:1px solid var(--bd);" onclick="window.location.href='mailto:niars091@gmail.com?subject=Assistenza%20MotoShot%20AI'">
+      <span class="setting-i"><svg class="lucide" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg></span>
+      <div><div class="setting-t">Assistenza</div><div class="setting-s">Scrivici per aiuto o segnalazioni</div></div>
+      <span class="setting-arr">›</span>
     </div>
-    <div class="setting">
-      <span class="setting-i"><svg class="lucide" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8M15 18h-5M10 6h8M18 10h-3M10 6v4h-4v-4z"/></svg></span>
-      <div><div class="setting-t">News settimanali</div><div class="setting-s">Aggiornamenti moto</div></div>
-      <label class="tog"><input type="checkbox" id="nsNews" checked onchange="saveNotifPrefs()"><span class="tog-sl"></span></label>
-    </div>
-  </div>
-  <div class="card" style="padding:0 4px;margin-bottom:12px;">
-    <div class="setting" style="border-bottom:1px solid var(--bd);" onclick="alert('Condividi MotoShot AI con i tuoi amici! <svg class="lucide" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M15 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-3 11.5V14l-3-3 4-3 2 3h2"/></svg>️')">
-      <span class="setting-i"><svg class="lucide" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+    <div class="setting" style="border-bottom:1px solid var(--bd);" onclick="window.location.href='mailto:niars091@gmail.com?subject=MotoShot%20AI%20-%20Condividi'">
+      <span class="setting-i"><svg class="lucide" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg></span>
       <div><div class="setting-t">Condividi l'app</div><div class="setting-s">Invita amici motociclisti</div></div>
       <span class="setting-arr">›</span>
     </div>
+    <div class="setting" onclick="alert('MotoShot AI v1.0 — Powered by Claude AI')">
+      <span class="setting-i">ℹ️</span>
+      <div><div class="setting-t">Informazioni</div><div class="setting-s">Versione 1.0.0</div></div>
+      <span class="setting-arr">›</span>
+    </div>
+  </div>
     <div class="setting" onclick="alert('MotoShot AI v1.0 — Powered by Claude AI')">
       <span class="setting-i">ℹ️</span>
       <div><div class="setting-t">Informazioni</div><div class="setting-s">Versione 1.0.0</div></div>
