@@ -98,7 +98,7 @@ const canSubmit = tab === 'magic'
 
         {/* Logo */}
         <div style={{ textAlign: 'center', marginBottom: 28 }}>
-          <img src="/motoshot-logo-completo.png" alt="MotoShot AI"
+          <img src="/logo-header.png.png" alt="MotoShot AI"
             style={{ width: 240, maxWidth: '80%', height: 'auto', margin: '0 auto 10px', display: 'block' }} />
           <p style={{ fontSize: 13, color: '#6b7e94', letterSpacing: '.04em' }}>Il tuo garage digitale</p>
         </div>
