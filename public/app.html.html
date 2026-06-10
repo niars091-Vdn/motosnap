@@ -1199,8 +1199,8 @@ function filterBrand(brand){
 function renderOfferte(){
   const el=document.getElementById('offerteScroll');
   if(!el)return;
-  el.innerHTML=OFFERTE.map(o=>`
-    <div class="offerta-card">
+  el.innerHTML=OFFERTE.map((o,i)=>`
+    <div class="offerta-card" onclick="openOfferta(${i})">
       <div class="offerta-img">
         <img src="${o.img}" loading="lazy" alt="" onerror="this.src='https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=400&q=80'">
         ${o.d?`<span class="offerta-disc">${o.d}</span>`:''}
@@ -1212,6 +1212,25 @@ function renderOfferte(){
         <div><span class="offerta-price">${o.p}€</span>${o.op?`<span class="offerta-old">${o.op}€</span>`:''}</div>
       </div>
     </div>`).join('');
+}
+function openOfferta(i){
+  const o=OFFERTE[i];if(!o)return;
+  document.getElementById('mProdImg').src=o.img;
+  const risparmio=o.op?(parseFloat(o.op)-parseFloat(o.p)).toFixed(2):null;
+  document.getElementById('mProdBody').innerHTML=`
+    <div style="font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--tx3);margin-bottom:8px">${o.sh}</div>
+    <div style="font-family:'Inter Tight',sans-serif;font-weight:800;font-size:22px;letter-spacing:-.02em;color:var(--tx);margin-bottom:12px;line-height:1.1">${o.n}</div>
+    ${o.scad?`<div style="display:inline-block;background:rgba(232,67,31,.1);border:1px solid rgba(232,67,31,.25);color:var(--red);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:8px;margin-bottom:14px">${o.scad}</div>`:''}
+    <div class="divider"></div>
+    <div style="display:flex;align-items:flex-end;gap:10px;margin-bottom:16px;margin-top:12px">
+      <span style="font-family:'Inter Tight',sans-serif;font-weight:800;font-size:32px;letter-spacing:-.02em;color:var(--red)">${o.p}€</span>
+      ${o.op?`<span style="font-size:15px;font-weight:600;color:var(--tx3);text-decoration:line-through;margin-bottom:4px">${o.op}€</span>`:''}
+      ${risparmio?`<span style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:4px">Risparmi ${risparmio}€</span>`:''}
+    </div>
+    <div style="font-size:11px;font-weight:600;letter-spacing:.08em;color:var(--tx3);text-align:center;margin-bottom:12px"><svg class="lucide" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg> Offerta del negozio partner ${o.sh}</div>
+    <button class="btn btn-red" onclick="alert('Presto potrai acquistare direttamente dal negozio partner!')" style="margin-bottom:10px;"><svg class="lucide" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h2.4l2.8 13a2 2 0 0 0 2 1.6h8a2 2 0 0 0 2-1.5L22 7H6"/></svg> VAI ALL'OFFERTA</button>
+    <button class="btn btn-out" onclick="closeModal('mProd')" style="margin-bottom:22px;">↓ Chiudi</button>`;
+  openModal('mProd');
 }
   
 function renderCommunity(){
