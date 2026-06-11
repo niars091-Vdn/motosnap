@@ -20,8 +20,8 @@ interface TopBike  { brand: string; model: string; scans: number; avg_confidence
 interface RecentScan { brand: string; model: string; confidence: number; scan_date: string; profiles: { display_name: string } }
 interface RecentUser { id: string; email: string; display_name: string; scan_count: number; created_at: string; role: string }
 
-const GREEN = '#2a6644'
-const LIGHT = '#eef0ec'
+const GREEN = '#E8431F'
+const LIGHT = '#f5f0ee'
 
 export default function Dashboard() {
   const router   = useRouter()
@@ -63,7 +63,7 @@ export default function Dashboard() {
 if (!authed) return (
     <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: LIGHT, fontFamily: 'sans-serif' }}>
       <div style={{ background: '#fff', borderRadius: 16, padding: 32, width: 320, boxShadow: '0 8px 32px rgba(0,0,0,.12)' }}>
-        <div style={{ fontWeight: 800, fontSize: 18, color: '#1a2e1a', marginBottom: 6, textAlign: 'center' }}>🔒 Dashboard MotoSnap</div>
+        <div style={{ fontWeight: 800, fontSize: 18, color: '#1a2e1a', marginBottom: 6, textAlign: 'center' }}>🔒 Dashboard MotoShot AI</div>
         <div style={{ fontSize: 13, color: '#888', marginBottom: 20, textAlign: 'center' }}>Inserisci la password admin</div>
         <input
           type="password"
@@ -101,17 +101,9 @@ if (!authed) return (
       {/* Top bar */}
       <div style={{ background: '#fff', borderBottom: '1px solid #ddd', padding: '12px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'sticky', top: 0, zIndex: 50 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <svg width="32" height="32" viewBox="0 0 200 200" fill="none">
-            <rect width="200" height="200" rx="44" fill={GREEN}/>
-            <g stroke="#e8dfc8" strokeWidth="6" strokeLinecap="round" fill="none">
-              <circle cx="100" cy="90" r="62"/>
-              <line x1="100" y1="28" x2="62" y2="152"/><line x1="100" y1="28" x2="138" y2="152"/>
-              <line x1="38" y1="90" x2="152" y2="62"/><line x1="38" y1="90" x2="145" y2="128"/>
-              <line x1="162" y1="90" x2="55" y2="62"/><line x1="162" y1="90" x2="55" y2="128"/>
-            </g>
-          </svg>
+          <img src="/logo-header.png.png" alt="MotoShot AI" style={{ height: 32 }} />
           <div>
-            <div style={{ fontWeight: 800, fontSize: 16, color: '#1a2e1a', letterSpacing: '-.01em' }}>MotoSnap</div>
+            <div style={{ fontWeight: 800, fontSize: 16, color: '#1a2e1a', letterSpacing: '-.01em' }}>MotoShot AI</div>
             <div style={{ fontSize: 10, color: '#8a9a8a', letterSpacing: '.1em', textTransform: 'uppercase' }}>Admin Dashboard</div>
           </div>
         </div>
