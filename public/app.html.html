@@ -836,36 +836,36 @@ const PRODS={
 };
 const CATS=[{id:'ricambi',l:'Ricambi',e:'<svg class="lucide" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-1.8-.3 1.6 1.6 0 0 0-1 1.5V21a2 2 0 0 1-4 0v-.1a1.6 1.6 0 0 0-1-1.5 1.6 1.6 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0 .3-1.8 1.6 1.6 0 0 0-1.5-1H3a2 2 0 0 1 0-4h.1a1.6 1.6 0 0 0 1.5-1 1.6 1.6 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.6 1.6 0 0 0 1.8.3h.1a1.6 1.6 0 0 0 1-1.5V3a2 2 0 0 1 4 0v.1a1.6 1.6 0 0 0 1 1.5 1.6 1.6 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0-.3 1.8v.1a1.6 1.6 0 0 0 1.5 1H21a2 2 0 0 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1z"/></svg>'},{id:'abbigliamento',l:'Abbigliamento',e:'<svg class="lucide" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true"><path d="M12 3 8 5v3l-5 2v11h6v-7h6v7h6V10l-5-2V5z"/></svg>'},{id:'caschi',l:'Caschi',e:'<svg class="lucide" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true"><path d="M4 14a8 8 0 0 1 16 0v3H4z"/><path d="M2 17h20v3H2z"/><path d="M9 11h6"/></svg>'},{id:'performance',l:'Performance',e:'<svg class="lucide" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true"><path d="M4 21V4M4 4h13l-2 4 2 4H4"/></svg>'},{id:'accessori',l:'Accessori',e:'<svg class="lucide" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true"><path d="M5 9a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v11a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1z"/><path d="M9 5V3h6v2M8 13h8M10 21v-4h4v4"/></svg>'}];
 const QUIZ=[
-  {keyword:'ducati+motorcycle',q:'Che marca è questa moto?',ok:'Ducati',opts:['Honda','Ducati','Yamaha','Kawasaki']},
-  {keyword:'honda+motorcycle',q:'Che marca è questa moto?',ok:'Honda',opts:['Honda','Ducati','BMW','Aprilia']},
-  {keyword:'bmw+motorcycle',q:'Che marca è questa moto?',ok:'BMW',opts:['Triumph','BMW','KTM','Harley']},
-  {keyword:'yamaha+motorcycle',q:'Che marca è questa moto?',ok:'Yamaha',opts:['Yamaha','Kawasaki','Suzuki','Honda']},
-  {keyword:'kawasaki+motorcycle',q:'Che marca è questa moto?',ok:'Kawasaki',opts:['Kawasaki','Honda','Yamaha','Ducati']},
-  {keyword:'ktm+motorcycle',q:'Che marca è questa moto?',ok:'KTM',opts:['KTM','Aprilia','Husqvarna','Beta']},
-  {keyword:'aprilia+motorcycle',q:'Che marca è questa moto?',ok:'Aprilia',opts:['Aprilia','Ducati','MV Agusta','Moto Guzzi']},
-  {keyword:'triumph+motorcycle',q:'Che marca è questa moto?',ok:'Triumph',opts:['Triumph','Norton','BSA','Royal Enfield']},
-  {keyword:'adventure+motorcycle',q:'Che tipo di moto è questa?',ok:'Adventure',opts:['Naked','Sportiva','Adventure','Cruiser']},
-  {keyword:'naked+motorcycle',q:'Che tipo di moto è questa?',ok:'Naked',opts:['Naked','Enduro','Touring','Scrambler']},
-  {keyword:'sportbike+motorcycle',q:'Che tipo di moto è questa?',ok:'Sportiva',opts:['Naked','Sportiva','Custom','Trial']},
-  {keyword:'cruiser+motorcycle',q:'Che tipo di moto è questa?',ok:'Cruiser',opts:['Cruiser','Enduro','Supermoto','Cafe Racer']},
-  {keyword:'scrambler+motorcycle',q:'Che tipo di moto è questa?',ok:'Scrambler',opts:['Scrambler','Cross','Enduro','Trial']},
-  {keyword:'cafe+racer+motorcycle',q:'Che tipo di moto è questa?',ok:'Cafe Racer',opts:['Cafe Racer','Bobber','Chopper','Bagger']},
-  {keyword:'motorcycle+helmet',q:'Che tipo di casco è questo?',ok:'Integrale',opts:['Jet','Integrale','Modulare','Cross']},
-  {keyword:'motorcycle+jacket',q:'Questo abbigliamento è:',ok:'Giacca moto',opts:['Giacca sci','Giacca moto','Tuta gara','Gilet']},
-  {keyword:'motorcycle+exhaust',q:'Questo componente è:',ok:'Scarico',opts:['Filtro aria','Scarico','Radiatore','Ammortizzatore']},
-  {keyword:'motorcycle+tire',q:'Questo componente è:',ok:'Pneumatico',opts:['Pneumatico','Cerchio','Freno','Catena']},
-  {keyword:'motorcycle+engine',q:'Questo componente è:',ok:'Motore',opts:['Motore','Telaio','Forcella','Carburatore']},
-  {keyword:'motorcycle+race+track',q:'Dove si corre qui?',ok:'In pista',opts:['In pista','Su strada','In fuoristrada','In città']},
-  {keyword:'enduro+motorcycle',q:'Che tipo di moto è questa?',ok:'Enduro',opts:['Enduro','Supermoto','Trial','Cross']},
-  {keyword:'supermoto+motorcycle',q:'Che tipo di moto è questa?',ok:'Supermoto',opts:['Cross','Supermoto','Enduro','Scrambler']},
-  {keyword:'harley+davidson',q:'Che marca è questa moto?',ok:'Harley-Davidson',opts:['Indian','Harley-Davidson','Victory','Boss Hoss']},
-  {keyword:'mv+agusta+motorcycle',q:'Che marca è questa moto?',ok:'MV Agusta',opts:['MV Agusta','Ducati','Aprilia','Bimota']},
-  {keyword:'moto+guzzi',q:'Che marca è questa moto?',ok:'Moto Guzzi',opts:['Moto Guzzi','Benelli','Laverda','Italjet']},
-  {keyword:'royal+enfield',q:'Che marca è questa moto?',ok:'Royal Enfield',opts:['Royal Enfield','Jawa','BSA','Norton']},
-  {keyword:'sidecar+motorcycle',q:'Questa moto ha:',ok:'Un sidecar',opts:['Un sidecar','Un trailer','Un passeggero','Un pacco']},
-  {keyword:'motorcycle+snow+winter',q:'Questa moto sta guidando:',ok:'Sulla neve',opts:['Sulla neve','In spiaggia','In città','In pista']},
-  {keyword:'vintage+motorcycle',q:'Questa moto è:',ok:'Vintage/Classica',opts:['Vintage/Classica','Moderna','Elettrica','Da gara']},
-  {keyword:'electric+motorcycle',q:'Questa moto è:',ok:'Elettrica',opts:['Elettrica','A idrogeno','A gas','Tradizionale']},
+  {img:'https://images.unsplash.com/photo-1609630875171-b1321377ee65?w=600&q=80',q:'Che tipo di moto è questa?',ok:'Naked',opts:['Naked','Sportiva','Adventure','Cruiser']},
+  {img:'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&q=80',q:'Che tipo di moto è questa?',ok:'Sportiva',opts:['Naked','Sportiva','Cruiser','Enduro']},
+  {img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80',q:'Che tipo di casco è questo?',ok:'Integrale',opts:['Jet','Integrale','Modulare','Cross']},
+  {img:'https://images.unsplash.com/photo-1547549082-6bc09f2049ae?w=600&q=80',q:'Che tipo di moto è questa?',ok:'Adventure',opts:['Naked','Sportiva','Adventure','Scrambler']},
+  {img:'https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=600&q=80',q:'Che tipo di moto è questa?',ok:'Naked',opts:['Naked','Cruiser','Enduro','Trial']},
+  {img:'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&q=80',q:'Quante ruote ha una moto standard?',ok:'2',opts:['1','2','3','4']},
+  {img:'https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=600&q=80',q:'Che tipo di moto è questa?',ok:'Cruiser',opts:['Naked','Sportiva','Cruiser','Enduro']},
+  {img:'https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=600&q=80',q:'Che tipo di casco è questo?',ok:'Integrale',opts:['Jet','Integrale','Modulare','Demi-jet']},
+  {img:'https://images.unsplash.com/photo-1558969479-b0e5e31fa25a?w=600&q=80',q:'Questo componente è:',ok:'Uno scarico',opts:['Un filtro','Uno scarico','Un radiatore','Una forcella']},
+  {img:'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=600&q=80',q:'Questo abbigliamento moto è:',ok:'Una giacca',opts:['Una tuta','Una giacca','Un gilet','Un impermeabile']},
+  {img:'https://images.unsplash.com/photo-1609630875171-b1321377ee65?w=600&q=80',q:'Le moto naked si chiamano così perché:',ok:'Sono senza carenatura',opts:['Sono senza carenatura','Sono senza sella','Sono senza motore','Sono senza ruote']},
+  {img:'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&q=80',q:'Quale marca produce la Panigale?',ok:'Ducati',opts:['Honda','Ducati','Yamaha','Kawasaki']},
+  {img:'https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=600&q=80',q:'La GS è un modello famoso di:',ok:'BMW',opts:['BMW','KTM','Triumph','Aprilia']},
+  {img:'https://images.unsplash.com/photo-1547549082-6bc09f2049ae?w=600&q=80',q:'Quale marca produce la MT-09?',ok:'Yamaha',opts:['Yamaha','Honda','Suzuki','Kawasaki']},
+  {img:'https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=600&q=80',q:'Quale marca produce la Z900?',ok:'Kawasaki',opts:['Honda','Ducati','Kawasaki','KTM']},
+  {img:'https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=600&q=80',q:'Quale marca produce la Duke?',ok:'KTM',opts:['KTM','Husqvarna','Beta','GasGas']},
+  {img:'https://images.unsplash.com/photo-1558969479-b0e5e31fa25a?w=600&q=80',q:'Quale marca produce la RS660?',ok:'Aprilia',opts:['Aprilia','Moto Guzzi','Ducati','MV Agusta']},
+  {img:'https://images.unsplash.com/photo-1615906655593-ad0386982a0f?w=600&q=80',q:'Il motore più comune nelle moto è:',ok:'A 4 tempi',opts:['A 2 tempi','A 4 tempi','Elettrico','A vapore']},
+  {img:'https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=600&q=80',q:'Un interfono moto serve per:',ok:'Comunicare in casco',opts:['Comunicare in casco','Navigare GPS','Ascoltare radio','Telefonare a piedi']},
+  {img:'https://images.unsplash.com/photo-1530062845289-9109b2c9c868?w=600&q=80',q:'JASO MA2 è una certificazione per:',ok:'Olio motore moto',opts:['Olio motore moto','Pneumatici','Caschi','Freni']},
+  {img:'https://images.unsplash.com/photo-1593476550610-87baa860004a?w=600&q=80',q:'Che tipo di moto è questa?',ok:'Scrambler',opts:['Scrambler','Enduro','Cross','Supermoto']},
+  {img:'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80',q:'Che tipo di moto è questa?',ok:'Sportiva',opts:['Naked','Sportiva','Touring','Cruiser']},
+  {img:'https://images.unsplash.com/photo-1525160354320-d8e92641c563?w=600&q=80',q:'Che tipo di moto è questa?',ok:'Enduro',opts:['Enduro','Supermoto','Trial','Cross']},
+  {img:'https://images.unsplash.com/photo-1591637333184-19aa84b3e01f?w=600&q=80',q:'Che tipo di moto è questa?',ok:'Naked',opts:['Naked','Sportiva','Adventure','Cruiser']},
+  {img:'https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?w=600&q=80',q:'Che tipo di moto è questa?',ok:'Touring',opts:['Naked','Sportiva','Touring','Scrambler']},
+  {img:'https://images.unsplash.com/photo-1558981285-6f0c8c83f440?w=600&q=80',q:'Che tipo di moto è questa?',ok:'Sportiva',opts:['Naked','Sportiva','Cruiser','Trial']},
+  {img:'https://images.unsplash.com/photo-1609630875171-b1321377ee65?w=600&q=80',q:'Il freno anteriore su una moto si aziona con:',ok:'La leva destra',opts:['La leva destra','La leva sinistra','Il pedale destro','Il pedale sinistro']},
+  {img:'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&q=80',q:'La frizione su una moto si aziona con:',ok:'La leva sinistra',opts:['La leva destra','La leva sinistra','Il pedale destro','Il pedale sinistro']},
+  {img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80',q:'ECE 22.06 è uno standard per:',ok:'Caschi moto',opts:['Caschi moto','Pneumatici','Giacche','Guanti']},
+  {img:'https://images.unsplash.com/photo-1547549082-6bc09f2049ae?w=600&q=80',q:'Il forcellone su una moto è:',ok:'La sospensione posteriore',opts:['La sospensione posteriore','Il manubrio','Il serbatoio','Il cavalletto']},
 ];
 const NEWS_FB=[
   {t:'BMW R 1300 GS Adventure 2025: più potente e più leggera',src:'Moto.it',time:'2 ore fa',img:'https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=600&q=80',url:'#'},
@@ -1378,7 +1378,7 @@ function renderQuiz(){
   const todayStr=new Date().toDateString();
   const alreadyPlayed=localStorage.getItem('msai_quiz')===todayStr;
   const savedAnswer=localStorage.getItem('msai_quiz_ans')||'';
-  const imgUrl=getQuizImg(todayIdx);
+  const imgUrl=q.img;
 
   document.getElementById('quizDiv').innerHTML=`
     <div class="quiz-img-wrap"><img src="${imgUrl}" alt="" onerror="this.src='https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=600&q=80'"><div class="quiz-ov"></div><div class="quiz-body-img"><div class="quiz-cat">· Sfida del giorno ·</div><div class="quiz-q">${q.q}</div></div></div>
