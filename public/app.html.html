@@ -908,6 +908,17 @@ function applyTheme(){
 
 /* ═══ SCREENS ═══ */
 function showScr(name){
+  // Gate login per Garage e Community
+  if((name==='garage'||name==='community')&&!window.__user){
+    const msgs={
+      garage:{title:'Il tuo Garage ti aspetta 🏍️',msg:'Accedi per salvare le tue moto, tracciare i km e ricevere promemoria manutenzione personalizzati.'},
+      community:{title:'Unisciti alla community 💬',msg:'Accedi per fare domande, rispondere ai motociclisti e condividere la tua esperienza.'}
+    };
+    document.getElementById('mLoginGateTitle').textContent=msgs[name].title;
+    document.getElementById('mLoginGateMsg').textContent=msgs[name].msg;
+    openModal('mLoginGate');
+    return;
+  }
   const map={scan:'Scan',garage:'Garage',scopri:'Scopri',community:'Community',profilo:'Profilo'};
   Object.keys(map).forEach(k=>{
     document.getElementById('s'+map[k]).classList.toggle('on',k===name);
