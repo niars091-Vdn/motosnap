@@ -117,7 +117,7 @@ export default function TermsPage() {
       </Section>
 
       <Section title="12. Legge applicabile e foro">
-        <p>Questi Termini sono regolati dalla legge italiana. Per controversie che non si risolvono amichevolmente, è competente il Tribunale di <strong>[DA COMPLETARE: città del foro competente]</strong>, salvo diversa disposizione obbligatoria di legge a tutela del consumatore.</p>
+        <p>Questi Termini sono regolati dalla legge italiana. Per controversie che non si risolvono amichevolmente, è competente il Tribunale di <strong>Civitavecchia</strong>, salvo diversa disposizione obbligatoria di legge a tutela del consumatore.</p>
         <p style={{ fontSize:13, color:'#666', marginTop:8 }}>Per i consumatori UE: è disponibile la piattaforma ODR (Online Dispute Resolution) della Commissione Europea: <a href="https://ec.europa.eu/consumers/odr" target="_blank" style={{ color:'#E8431F' }}>ec.europa.eu/consumers/odr</a></p>
       </Section>
 
