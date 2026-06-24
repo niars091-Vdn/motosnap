@@ -15,9 +15,9 @@ export default function PrivacyPage() {
       </div>
 
       <Section title="1. Titolare del trattamento">
-        <p><strong>[Michele Rotolo]</strong></p>
-        <p>Indirizzo: <strong>[Piazza Regoina margherita, 9]</strong></p>
-        <p>Codice Fiscale / Partita IVA: <strong>[RTLMHL82B09G273I]</strong></p>
+        <p><strong>Michele Rotolo</strong></p>
+        <p>Indirizzo: <strong>Piazza Regina Margherita 9, Civitavecchia (RM)</strong></p>
+        <p>Codice Fiscale: <strong>RTLMHL82B09G273I</strong></p>
         <p>Contatto privacy: <a href="mailto:niars091@gmail.com">niars091@gmail.com</a></p>
         <p>Per richieste GDPR usa oggetto <em>&quot;Richiesta GDPR — [tipo]&quot;</em>. Risponderemo entro 30 giorni (art. 12 GDPR).</p>
       </Section>
