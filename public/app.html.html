@@ -719,19 +719,31 @@ input:checked+.tog-sl::before{transform:translateX(18px);}
 </div>
 
 <!-- MODALS -->
+<!-- MODAL LOGIN GATE -->
+<div class="modal-bg" id="mLoginGate" onclick="if(event.target===this)closeModal('mLoginGate')">
+  <div class="modal-box">
+    <div class="modal-handle"></div>
+    <div class="modal-body" style="text-align:center;padding:28px 24px;">
+      <div style="font-size:48px;margin-bottom:16px;">🏍️</div>
+      <div class="modal-title" style="text-align:center;margin-bottom:8px;" id="mLoginGateTitle">Accedi per continuare</div>
+      <p style="font-size:14px;color:var(--tx2);line-height:1.65;margin-bottom:24px;" id="mLoginGateMsg">
+        Crea un account gratuito per salvare le tue moto e interagire con la community.
+      </p>
+      <button class="btn btn-red" onclick="window.location.href='/login'" style="margin-bottom:10px;">
+        <svg class="lucide" viewBox="0 0 24 24" width="1em" height="1em"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="M10 17l5-5-5-5"/><path d="M15 12H3"/></svg>
+        ACCEDI O REGISTRATI — È GRATIS
+      </button>
+      <button onclick="closeModal('mLoginGate')" style="width:100%;padding:13px;background:transparent;border:1.5px solid var(--bd);border-radius:14px;cursor:pointer;font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:var(--tx3);">
+        Non ora — continua a esplorare
+      </button>
+      <p style="font-size:11px;color:var(--tx3);margin-top:16px;line-height:1.6;">
+        Puoi comunque scansionare moto e vedere i prodotti senza account.
+      </p>
+    </div>
+  </div>
+</div>
 <div class="modal-bg" id="mProd" onclick="if(event.target===this)closeModal('mProd')"><div class="modal-box"><div class="modal-handle"></div><img id="mProdImg" src="" alt="" style="width:100%;aspect-ratio:4/3;object-fit:cover;"><div class="modal-body" id="mProdBody"></div></div></div>
-<div class="modal-bg" id="mBike" onclick="if(event.target===this)closeModal('mBike')"><div class="modal-box"><div class="modal-handle"></div><div class="modal-body" id="mBikeBody"></div></div></div>
-<div class="modal-bg" id="mBikeDetail" onclick="if(event.target===this)closeModal('mBikeDetail')"><div class="modal-box"><div class="modal-handle"></div><div class="modal-body" id="mBikeDetailBody"></div></div></div>
-<div class="modal-bg" id="mPost" onclick="if(event.target===this)closeModal('mPost')"><div class="modal-box"><div class="modal-handle"></div><div class="modal-body">
-  <div class="modal-title"><svg class="lucide" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Nuova domanda</div>
-  <label class="lbl">La tua domanda</label>
-  <textarea id="postTxt" class="inp" style="resize:none;height:90px;margin-bottom:10px;" placeholder="Es: Qual è il miglior olio per la Honda CB?"></textarea>
-  <label class="lbl">La tua moto</label>
-  <input id="postMoto" class="inp" style="margin-bottom:10px;" placeholder="Es. Honda CB600F">
-  <label class="lbl">Marca</label>
-  <select id="postBrand" class="inp" style="margin-bottom:16px;"><option value="">— Seleziona —</option><option>Ducati</option><option>Honda</option><option>BMW</option><option>Yamaha</option><option>Kawasaki</option><option>Aprilia</option><option>KTM</option><option>Triumph</option><option>Altra</option></select>
-  <button class="btn btn-red" onclick="submitPost()" style="margin-bottom:22px;"><svg class="lucide" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg> PUBBLICA</button>
-</div></div></div>
+<div class="modal-bg" id="mBike" onclick="if(event.target===this)closeModal('mBike')"><div class="modal-box"><div class="modal-handle"></div><div class="modal-body"
 
 <!-- NOTIF -->
 <div class="notif-ov" id="notifOv" onclick="closeNotifPanel()"></div>
