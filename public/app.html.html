@@ -1331,23 +1331,63 @@ function submitPost(){
 }
 
 /* ═══ QUIZ ═══ */
-function renderQuiz(){
-  document.getElementById('streakTag').innerHTML = ic('flame') + ' ' + streak;
-  const q=QUIZ[quizIdx];
-  document.getElementById('quizDiv').innerHTML=`
-    <div class="quiz-img-wrap"><img src="${q.img}" alt="" onerror="this.src='https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=600&q=80'"><div class="quiz-ov"></div><div class="quiz-body-img"><div class="quiz-cat">· Sfida del giorno ·</div><div class="quiz-q">${q.q}</div></div></div>
-    <div class="quiz-opts" id="qOpts">${q.opts.map(o=>`<div class="q-opt${quizDone?' dis':''}" onclick="answerQuiz('${o}','${q.ok}')">${o}</div>`).join('')}</div>
-    <div class="quiz-res${quizDone?' on':''}" id="qRes">${quizDone?`Hai già giocato oggi! Era <strong>${q.ok}</strong>`:''}</div>
-    <div class="streak-row"><span style="font-size:22px"><svg class="lucide" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 17c1.7 0 3-1.3 3-3 0-2.6-2-3.6-2-6 0-1.4.5-2.7 1.5-3.5C16 6 18 9 18 13a6 6 0 1 1-12 0c0-1.7.6-3.3 1.7-4.5"/></svg></span><div><div style="font-family:'Inter Tight',sans-serif;font-weight:700;font-size:14px;letter-spacing:.02em;color:var(--tx)">Serie: ${streak} giorni</div><div style="font-size:11px;font-weight:600;letter-spacing:.06em;color:var(--tx3)">Gioca ogni giorno per aumentare!</div></div></div>`;
+function getTodayQuizIdx(){
+  const now=new Date();
+  const dayOfYear=Math.floor((now-(new Date(now.getFullYear(),0,0)))/(1000*60*60*24));
+  return dayOfYear%QUIZ.length;
 }
-function answerQuiz(ans,ok){
-  if(quizDone)return;
-  document.querySelectorAll('.q-opt').forEach(el=>{el.classList.add('dis');if(el.textContent===ok)el.classList.add('ok');else if(el.textContent===ans&&ans!==ok)el.classList.add('no');});
-  const res=document.getElementById('qRes');res.classList.add('on');
-  if(ans===ok){res.innerHTML=`<svg class="lucide" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg> <strong>Corretto!</strong> Era ${ok}.`;streak++;localStorage.setItem('msai_streak',streak);}
-  else res.innerHTML=`<svg class="lucide" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6M9 9l6 6"/></svg> Era <strong>${ok}</strong>. Riprova domani!`;
-  localStorage.setItem('msai_quiz',new Date().toDateString());quizDone=true;
-  document.getElementById('streakTag').innerHTML = ic('flame') + ' ' + streak;document.getElementById('stStreak').textContent=streak;
+function getQuizImg(keyword){
+  const today=new Date().toDateString().replace(/ /g,'');
+  return`https://source.unsplash.com/600x400/?${keyword}&sig=${today}`;
+}
+function renderQuiz(){
+  document.getElementById('streakTag').innerHTML=ic('flame')+' '+streak;
+  const todayIdx=getTodayQuizIdx();
+  const q=QUIZ[todayIdx];
+  const todayStr=new Date().toDateString();
+  const alreadyPlayed=localStorage.getItem('msai_quiz')===todayStr;
+  const savedAnswer=localStorage.getItem('msai_quiz_ans')||'';
+  const imgUrl=getQuizImg(q.keyword);
+  document.getElementById('quizDiv').innerHTML=`
+    <div class="quiz-img-wrap"><img src="${imgUrl}" alt="" onerror="this.src='https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=600&q=80'"><div class="quiz-ov"></div><div class="quiz-body-img"><div class="quiz-cat">· Sfida del giorno ·</div><div class="quiz-q">${q.q}</div></div></div>
+    <div class="quiz-opts" id="qOpts">${q.opts.map(o=>{
+      let cls='q-opt';
+      if(alreadyPlayed){cls+=' dis';if(o===q.ok)cls+=' ok';else if(o===savedAnswer&&o!==q.ok)cls+=' no';}
+      return`<div class="${cls}" onclick="answerQuiz('${o}')">${o}</div>`;
+    }).join('')}</div>
+    <div class="quiz-res${alreadyPlayed?' on':''}" id="qRes">${alreadyPlayed?`${savedAnswer===q.ok?'✅ Corretto!':'❌ Sbagliato!'} Era <strong>${q.ok}</strong>. Torna domani!`:''}</div>
+    <div class="streak-row"><span style="font-size:22px">${ic('flame')}</span><div><div style="font-family:'Inter Tight',sans-serif;font-weight:700;font-size:14px;letter-spacing:.02em;color:var(--tx)">Serie: ${streak} giorni</div><div style="font-size:11px;font-weight:600;letter-spacing:.06em;color:var(--tx3)">Gioca ogni giorno per aumentare!</div></div></div>`;
+}
+function answerQuiz(ans){
+  const todayIdx=getTodayQuizIdx();
+  const q=QUIZ[todayIdx];
+  const todayStr=new Date().toDateString();
+  if(localStorage.getItem('msai_quiz')===todayStr)return;
+  document.querySelectorAll('.q-opt').forEach(el=>{
+    el.classList.add('dis');
+    if(el.textContent===q.ok)el.classList.add('ok');
+    else if(el.textContent===ans&&ans!==q.ok)el.classList.add('no');
+  });
+  const res=document.getElementById('qRes');
+  res.classList.add('on');
+  const correct=ans===q.ok;
+  if(correct){
+    res.innerHTML=`✅ <strong>Corretto!</strong> Era ${q.ok}. Torna domani!`;
+    const yesterday=new Date();yesterday.setDate(yesterday.getDate()-1);
+    const lastPlayed=localStorage.getItem('msai_quiz_last');
+    if(lastPlayed===yesterday.toDateString()||streak===0)streak++;
+    else if(lastPlayed!==todayStr)streak=1;
+    localStorage.setItem('msai_streak',streak);
+  }else{
+    res.innerHTML=`❌ Era <strong>${q.ok}</strong>. Riprova domani!`;
+    streak=0;
+    localStorage.setItem('msai_streak',streak);
+  }
+  localStorage.setItem('msai_quiz',todayStr);
+  localStorage.setItem('msai_quiz_last',todayStr);
+  localStorage.setItem('msai_quiz_ans',ans);
+  document.getElementById('streakTag').innerHTML=ic('flame')+' '+streak;
+  document.getElementById('stStreak').textContent=streak;
 }
 
 /* ═══ NEWS ═══ */
