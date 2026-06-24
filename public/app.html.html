@@ -1433,8 +1433,8 @@ async function renderNews(){
   if(!news.length)news=NEWS_FB.map(x=>({t:x.t,src:x.src,time:x.time,img:x.img,url:x.url}));
   const f=news[0];const rest=news.slice(1);
   const fi=f.img||'https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=600&q=80';
-  document.getElementById('newsFeat').innerHTML=`<div class="news-feat" onclick="window.open('${f.url||'#'}','_blank')"><img src="${fi}" alt="" onerror="this.src='https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=600&q=80'"><div class="news-feat-ov"></div><div class="news-feat-body"><div class="news-feat-src">${f.src} · ${f.time}</div><div class="news-feat-t">${f.t}</div></div></div>`;
-  document.getElementById('newsList').innerHTML=rest.map(n=>{const ti=n.img||'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=200&q=60';return`<div class="news-item" onclick="window.open('${n.url||'#'}','_blank')"><img class="news-thumb" src="${ti}" alt="" onerror="this.style.background='var(--bg3)'"><div><div class="news-src">${n.src} · ${n.time}</div><div class="news-t">${n.t}</div></div><span style="color:var(--tx3);font-size:16px;margin-left:auto;flex-shrink:0">›</span></div>`;}).join('');
+  document.getElementById('newsFeat').innerHTML=`<div class="news-feat" onclick="if('${f.url}'&&'${f.url}'!=='#')window.open('${f.url}','_blank')"><img src="${fi}" alt="" onerror="this.src='https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=600&q=80'"><div class="news-feat-ov"></div><div class="news-feat-body"><div class="news-feat-src">${f.src} · ${f.time}</div><div class="news-feat-t">${f.t}</div></div></div>`;
+  document.getElementById('newsList').innerHTML=rest.map(n=>{const ti=n.img||'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=200&q=60';return`<div class="news-item" onclick="if('${n.url}'&&'${n.url}'!=='#')window.open('${n.url}','_blank')">
 }
 function timeAgoMs(d){if(!d)return'';const m=(Date.now()-new Date(d))/60000;if(m<60)return Math.round(m)+' min fa';if(m<1440)return Math.round(m/60)+' ore fa';return Math.round(m/1440)+' giorni fa';}
 
