@@ -104,7 +104,7 @@ export default function TermsPage() {
       </Section>
 
       <Section title="10. Sospensione e cancellazione">
-        <p><strong>Da parte tua:</strong> puoi cancellare il tuo account in qualsiasi momento da Profilo → Elimina account, oppure richiedendolo a privacy@motosnap.app o dalla pagina <a href="/elimina-account">motosnap.vercel.app/elimina-account</a>.</p>
+        <p><strong>Da parte tua:</strong> puoi cancellare il tuo account in qualsiasi momento da Profilo → Elimina account, oppure richiedendolo a niars091@gmail.com o dalla pagina <a href="/elimina-account">motosnap.vercel.app/elimina-account</a>.</p>
         <p><strong>Da parte nostra:</strong> ci riserviamo di sospendere o cancellare account che violano questi Termini, previo avviso quando possibile.</p>
       </Section>
 
@@ -123,9 +123,9 @@ export default function TermsPage() {
 
       <Section title="13. Contatti">
         <p>
-          Supporto: <a href="mailto:privacy@motosnap.app" style={{ color:'#E8431F' }}>privacy@motosnap.app</a><br/>
-          Privacy/GDPR: <a href="mailto:privacy@motosnap.app" style={{ color:'#E8431F' }}>privacy@motosnap.app</a><br/>
-          Segnalazioni abusi: <a href="mailto:privacy@motosnap.app" style={{ color:'#E8431F' }}>privacy@motosnap.app</a>
+          Supporto: <a href="mailto:niars091@gmail.com" style={{ color:'#E8431F' }}>niars091@gmail.com</a><br/>
+          Privacy/GDPR: <a href="mailto:niars091@gmail.com" style={{ color:'#E8431F' }}>niars091@gmail.com</a><br/>
+          Segnalazioni abusi: <a href="mailto:niars091@gmail.com" style={{ color:'#E8431F' }}>niars091@gmail.com</a>
         </p>
       </Section>
 
