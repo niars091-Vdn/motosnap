@@ -1440,7 +1440,7 @@ async function renderNews(){
     return`<div class="news-item" onclick="if('${n.url}'&&'${n.url}'!=='#')window.open('${n.url}','_blank')"><img class="news-thumb" src="${ti}" alt="" onerror="this.style.background='var(--bg3)'"><div><div class="news-src">${n.src} · ${n.time}</div><div class="news-t">${n.t}</div></div><span style="color:var(--tx3);font-size:16px;margin-left:auto;flex-shrink:0">›</span></div>`;
   }).join('');
 }
-function timeAgoMs(d){
+function timeAgoMs(d){if(!d)return'';const m=(Date.now()-new Date(d))/60000;if(m<60)return Math.round(m)+' min fa';if(m<1440)return Math.round(m/60)+' ore fa';return Math.round(m/1440)+' giorni fa';}
 
 /* ═══ API KEY ═══ */
 function saveKey(){const v=document.getElementById('keyInp').value.trim();if(!v.startsWith('sk-ant-')){showKS('Chiave non valida — deve iniziare con sk-ant-',false);return;}localStorage.setItem('motoid_api_key',v);showKS('<svg class="lucide" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg> Chiave salvata! AI attiva.',true);}
