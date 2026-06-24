@@ -15,9 +15,9 @@ export default function PrivacyPage() {
       </div>
 
       <Section title="1. Titolare del trattamento">
-        <p><strong>[DA COMPLETARE: Nome legale completo — es. Mario Rossi / MotoShot S.r.l.]</strong></p>
-        <p>Indirizzo: <strong>[DA COMPLETARE: sede legale o domicilio]</strong></p>
-        <p>Codice Fiscale / Partita IVA: <strong>[DA COMPLETARE]</strong></p>
+        <p><strong>[Michele Rotolo]</strong></p>
+        <p>Indirizzo: <strong>[Piazza Regoina margherita, 9]</strong></p>
+        <p>Codice Fiscale / Partita IVA: <strong>[RTLMHL82B09G273I]</strong></p>
         <p>Contatto privacy: <a href="mailto:privacy@motosnap.app">privacy@motosnap.app</a></p>
         <p>Per richieste GDPR usa oggetto <em>&quot;Richiesta GDPR — [tipo]&quot;</em>. Risponderemo entro 30 giorni (art. 12 GDPR).</p>
       </Section>
