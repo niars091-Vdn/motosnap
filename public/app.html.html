@@ -1425,19 +1425,38 @@ function answerQuiz(ans){
 /* ═══ NEWS ═══ */
 async function renderNews(){
   document.getElementById('newsFeat').innerHTML=`<div style="height:170px;border-radius:20px;background:var(--bg2);display:flex;align-items:center;justify-content:center;margin-bottom:14px;box-shadow:var(--card-shadow)"><div style="text-align:center"><div style="width:26px;height:26px;border:2.5px solid var(--bd);border-top-color:var(--red);border-radius:50%;margin:0 auto 10px;animation:spin .8s linear infinite;"></div><div style="font-size:12px;font-weight:600;letter-spacing:.06em;color:var(--tx3)">Caricamento news…</div></div></div>`;
+  const feeds=[
+    {url:'https://www.moto.it/rss',src:'Moto.it'},
+    {url:'https://www.motociclismo.it/rss',src:'Motociclismo'},
+    {url:'https://www.insella.it/feed',src:'Insella.it'}
+  ];
   let news=[];
-  try{
-    const r=await fetch('https://api.rss2json.com/v1/api.json?rss_url='+encodeURIComponent('https://www.moto.it/rss')+'&count=6',{signal:AbortSignal.timeout(5000)});
-    if(r.ok){const d=await r.json();if(d.status==='ok'&&d.items?.length)news=d.items.map(x=>({t:x.title,src:'Moto.it',time:timeAgoMs(x.pubDate),img:x.thumbnail||x.enclosure?.link||'',url:x.link}));}
-  }catch{}
+  for(const feed of feeds){
+    try{
+      const r=await fetch('https://api.rss2json.com/v1/api.json?rss_url='+encodeURIComponent(feed.url)+'&count=4',{signal:AbortSignal.timeout(6000)});
+      if(r.ok){
+        const d=await r.json();
+        if(d.status==='ok'&&d.items?.length){
+          d.items.forEach(x=>{
+            let img=x.thumbnail||x.enclosure?.link||'';
+            if(!img&&x.content){const m=x.content.match(/<img[^>]+src="([^"]+)"/);if(m)img=m[1];}
+            if(!img&&x.description){const m=x.description.match(/<img[^>]+src="([^"]+)"/);if(m)img=m[1];}
+            news.push({t:x.title,src:feed.src,time:timeAgoMs(x.pubDate),img,url:x.link});
+          });
+        }
+      }
+    }catch{}
+  }
+  news.sort((a,b)=>0);
   if(!news.length)news=NEWS_FB.map(x=>({t:x.t,src:x.src,time:x.time,img:x.img,url:x.url}));
+  news=news.slice(0,6);
   const f=news[0];const rest=news.slice(1);
-  const fi=f.img||'https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=600&q=80';
-  document.getElementById('newsFeat').innerHTML=`<div class="news-feat" onclick="if('${f.url}'&&'${f.url}'!=='#')window.open('${f.url}','_blank')"><img src="${fi}" alt="" onerror="this.src='https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=600&q=80'"><div class="news-feat-ov"></div><div class="news-feat-body"><div class="news-feat-src">${f.src} · ${f.time}</div><div class="news-feat-t">${f.t}</div></div></div>`;
+  const fb='https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=600&q=80';
+  const fi=f.img||fb;
+  document.getElementById('newsFeat').innerHTML=`<div class="news-feat" onclick="if('${f.url}'&&'${f.url}'!=='#')window.open('${f.url}','_blank')"><img src="${fi}" alt="" onerror="this.src='${fb}'"><div class="news-feat-ov"></div><div class="news-feat-body"><div class="news-feat-src">${f.src} · ${f.time}</div><div class="news-feat-t">${f.t}</div></div></div>`;
   document.getElementById('newsList').innerHTML=rest.map(n=>{
-    const fallbacks={'Moto.it':'https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=200&q=60','Motociclismo':'https://images.unsplash.com/photo-1609630875171-b1321377ee65?w=200&q=60','Insella.it':'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=200&q=60','default':'https://images.unsplash.com/photo-1558969479-b0e5e31fa25a?w=200&q=60'};
-    const ti=n.img||(fallbacks[n.src]||fallbacks['default']);
-    return`<div class="news-item" onclick="if('${n.url}'&&'${n.url}'!=='#')window.open('${n.url}','_blank')"><img class="news-thumb" src="${ti}" alt="" onerror="this.style.background='var(--bg3)'"><div><div class="news-src">${n.src} · ${n.time}</div><div class="news-t">${n.t}</div></div><span style="color:var(--tx3);font-size:16px;margin-left:auto;flex-shrink:0">›</span></div>`;
+    const ti=n.img||'https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=200&q=60';
+    return`<div class="news-item" onclick="if('${n.url}'&&'${n.url}'!=='#')window.open('${n.url}','_blank')"><img class="news-thumb" src="${ti}" alt="" onerror="this.src='https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=200&q=60'"><div><div class="news-src">${n.src} · ${n.time}</div><div class="news-t">${n.t}</div></div><span style="color:var(--tx3);font-size:16px;margin-left:auto;flex-shrink:0">›</span></div>`;
   }).join('');
 }
 function timeAgoMs(d){if(!d)return'';const m=(Date.now()-new Date(d))/60000;if(m<60)return Math.round(m)+' min fa';if(m<1440)return Math.round(m/60)+' ore fa';return Math.round(m/1440)+' giorni fa';}
