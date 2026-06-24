@@ -1434,9 +1434,13 @@ async function renderNews(){
   const f=news[0];const rest=news.slice(1);
   const fi=f.img||'https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=600&q=80';
   document.getElementById('newsFeat').innerHTML=`<div class="news-feat" onclick="if('${f.url}'&&'${f.url}'!=='#')window.open('${f.url}','_blank')"><img src="${fi}" alt="" onerror="this.src='https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=600&q=80'"><div class="news-feat-ov"></div><div class="news-feat-body"><div class="news-feat-src">${f.src} · ${f.time}</div><div class="news-feat-t">${f.t}</div></div></div>`;
-  document.getElementById('newsList').innerHTML=rest.map(n=>{const ti=n.img||'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=200&q=60';return`<div class="news-item" onclick="if('${n.url}'&&'${n.url}'!=='#')window.open('${n.url}','_blank')">
+  document.getElementById('newsList').innerHTML=rest.map(n=>{
+    const fallbacks={'Moto.it':'https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=200&q=60','Motociclismo':'https://images.unsplash.com/photo-1609630875171-b1321377ee65?w=200&q=60','Insella.it':'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=200&q=60','default':'https://images.unsplash.com/photo-1558969479-b0e5e31fa25a?w=200&q=60'};
+    const ti=n.img||(fallbacks[n.src]||fallbacks['default']);
+    return`<div class="news-item" onclick="if('${n.url}'&&'${n.url}'!=='#')window.open('${n.url}','_blank')"><img class="news-thumb" src="${ti}" alt="" onerror="this.style.background='var(--bg3)'"><div><div class="news-src">${n.src} · ${n.time}</div><div class="news-t">${n.t}</div></div><span style="color:var(--tx3);font-size:16px;margin-left:auto;flex-shrink:0">›</span></div>`;
+  }).join('');
 }
-function timeAgoMs(d){if(!d)return'';const m=(Date.now()-new Date(d))/60000;if(m<60)return Math.round(m)+' min fa';if(m<1440)return Math.round(m/60)+' ore fa';return Math.round(m/1440)+' giorni fa';}
+function timeAgoMs(d){
 
 /* ═══ API KEY ═══ */
 function saveKey(){const v=document.getElementById('keyInp').value.trim();if(!v.startsWith('sk-ant-')){showKS('Chiave non valida — deve iniziare con sk-ant-',false);return;}localStorage.setItem('motoid_api_key',v);showKS('<svg class="lucide" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg> Chiave salvata! AI attiva.',true);}
