@@ -1,50 +1,25 @@
 {
-  "name": "MotoSnap",
-  "short_name": "MotoSnap",
-  "description": "Identifica qualsiasi moto con l'AI — il tuo garage digitale",
+  "name": "MotoShot AI",
+  "short_name": "MotoShot",
+  "description": "Identifica qualsiasi moto con l'AI",
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#eef0ec",
-  "theme_color": "#2a6644",
+  "background_color": "#06101e",
+  "theme_color": "#E8431F",
   "lang": "it",
-  "categories": ["lifestyle", "utilities"],
   "icons": [
-    { "src": "/icons/icon-72.png",   "sizes": "72x72",   "type": "image/png" },
-    { "src": "/icons/icon-96.png",   "sizes": "96x96",   "type": "image/png" },
-    { "src": "/icons/icon-128.png",  "sizes": "128x128", "type": "image/png" },
-    { "src": "/icons/icon-144.png",  "sizes": "144x144", "type": "image/png" },
-    { "src": "/icons/icon-152.png",  "sizes": "152x152", "type": "image/png" },
-    { "src": "/icons/icon-192.png",  "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
-    { "src": "/icons/icon-384.png",  "sizes": "384x384", "type": "image/png" },
-    { "src": "/icons/icon-512.png",  "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
-  ],
-  "screenshots": [
     {
-      "src": "/screenshots/scan.png",
-      "sizes": "390x844",
+      "src": "/icon-192.png",
+      "sizes": "192x192",
       "type": "image/png",
-      "form_factor": "narrow",
-      "label": "Scansiona una moto"
+      "purpose": "any maskable"
     },
     {
-      "src": "/screenshots/garage.png",
-      "sizes": "390x844",
+      "src": "/icon-512.png",
+      "sizes": "512x512",
       "type": "image/png",
-      "form_factor": "narrow",
-      "label": "Il tuo garage digitale"
-    }
-  ],
-  "shortcuts": [
-    {
-      "name": "Scansiona moto",
-      "url": "/?tab=scan",
-      "icons": [{ "src": "/icons/icon-96.png", "sizes": "96x96" }]
-    },
-    {
-      "name": "Il mio garage",
-      "url": "/?tab=garage",
-      "icons": [{ "src": "/icons/icon-96.png", "sizes": "96x96" }]
+      "purpose": "any maskable"
     }
   ]
 }
