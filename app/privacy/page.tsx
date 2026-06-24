@@ -18,7 +18,7 @@ export default function PrivacyPage() {
         <p><strong>[Michele Rotolo]</strong></p>
         <p>Indirizzo: <strong>[Piazza Regoina margherita, 9]</strong></p>
         <p>Codice Fiscale / Partita IVA: <strong>[RTLMHL82B09G273I]</strong></p>
-        <p>Contatto privacy: <a href="mailto:privacy@motosnap.app">privacy@motosnap.app</a></p>
+        <p>Contatto privacy: <a href="mailto:niars091@gmail.com">niars091@gmail.com</a></p>
         <p>Per richieste GDPR usa oggetto <em>&quot;Richiesta GDPR — [tipo]&quot;</em>. Risponderemo entro 30 giorni (art. 12 GDPR).</p>
       </Section>
 
@@ -110,7 +110,7 @@ export default function PrivacyPage() {
         <p>Puoi eliminare il tuo account e tutti i dati associati in qualsiasi momento:</p>
         <ul>
           <li><strong>Dall&apos;app:</strong> vai in <em>Profilo → Elimina account</em>. La cancellazione è immediata e irreversibile.</li>
-          <li><strong>Via web:</strong> se hai disinstallato l&apos;app, puoi richiedere la cancellazione scrivendo a <a href="mailto:privacy@motosnap.app"><strong>privacy@motosnap.app</strong></a> con oggetto &quot;Richiesta cancellazione account&quot;, oppure dalla pagina dedicata <a href="/elimina-account">motosnap.vercel.app/elimina-account</a>.</li>
+          <li><strong>Via web:</strong> se hai disinstallato l&apos;app, puoi richiedere la cancellazione scrivendo a <a href="mailto:niars091@gmail.com"><strong>niars091@gmail.com</strong></a> con oggetto &quot;Richiesta cancellazione account&quot;, oppure dalla pagina dedicata <a href="/elimina-account">motosnap.vercel.app/elimina-account</a>.</li>
         </ul>
         <p style={{ fontSize:13, color:'#666', marginTop:8 }}>
           Alla cancellazione, i tuoi dati personali (account, garage, scansioni, post) vengono eliminati entro 30 giorni. Alcuni log di sicurezza possono essere conservati per il periodo minimo previsto dalla legge.
@@ -127,7 +127,7 @@ export default function PrivacyPage() {
           <li><strong>Opposizione (art. 21):</strong> opporti al legittimo interesse</li>
         </ul>
         <p style={{ marginTop:10 }}>
-          Scrivi a <a href="mailto:privacy@motosnap.app"><strong>privacy@motosnap.app</strong></a> con oggetto &quot;Richiesta GDPR — [diritto]&quot;. Risponderemo entro 30 giorni.
+          Scrivi a <a href="mailto:niars091@gmail.com"><strong>niars091@gmail.com</strong></a> con oggetto &quot;Richiesta GDPR — [diritto]&quot;. Risponderemo entro 30 giorni.
         </p>
         <div style={{ background:'#f5f1eb', borderRadius:10, padding:'12px 14px', marginTop:12, fontSize:13, color:'#555' }}>
           Puoi presentare reclamo al <strong>Garante Privacy</strong>:<br/>
@@ -146,7 +146,7 @@ export default function PrivacyPage() {
       </Section>
 
       <Section title="12. Minori">
-        <p>Il servizio è riservato a utenti di almeno <strong>16 anni</strong> (art. 8 GDPR; D.Lgs. 196/2003). I minori di 16 anni non possono registrarsi. Segnala eventuali account di minori a privacy@motosnap.app.</p>
+        <p>Il servizio è riservato a utenti di almeno <strong>16 anni</strong> (art. 8 GDPR; D.Lgs. 196/2003). I minori di 16 anni non possono registrarsi. Segnala eventuali account di minori a niars091@gmail.com.</p>
       </Section>
 
       <Section title="13. Aggiornamenti">
@@ -154,7 +154,7 @@ export default function PrivacyPage() {
       </Section>
 
       <div style={{ borderTop:'1px solid #eee', paddingTop:20, marginTop:32, fontSize:12, color:'#aaa' }}>
-        Privacy Policy v1.1 · MotoShot AI · <a href="mailto:privacy@motosnap.app" style={{ color:'#E8431F' }}>privacy@motosnap.app</a>
+        Privacy Policy v1.1 · MotoShot AI · <a href="mailto:niars091@gmail.com" style={{ color:'#E8431F' }}>niars091@gmail.com</a>
       </div>
     </div>
   )
