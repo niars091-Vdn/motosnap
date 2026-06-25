@@ -3,12 +3,30 @@ import { NextResponse } from 'next/server';
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
+// fonti: alcune 100% moto (no filtro), altre generaliste (con filtro)
 const FEEDS = [
-  { url: 'https://www.moto.it/rss/news.xml', src: 'Moto.it' },
-  { url: 'https://www.moto.it/rss/news-motogp.xml', src: 'Moto.it MotoGP' },
-  { url: 'https://www.moto.it/rss/news-superbike.xml', src: 'Moto.it SBK' },
-  { url: 'https://www.moto.it/rss/news-motocross.xml', src: 'Moto.it MX' },
+  { url: 'https://www.moto.it/rss/news.xml', src: 'Moto.it', motoOnly: false },
+  { url: 'https://www.moto.it/rss/news-motogp.xml', src: 'Moto.it MotoGP', motoOnly: false },
+  { url: 'https://www.motoblog.it/feed', src: 'Motoblog', motoOnly: false },
+  { url: 'https://www.gazzetta.it/rss/home.xml', src: 'Gazzetta', motoOnly: true },
 ];
+
+// parole che indicano un articolo MOTO (per le fonti generaliste)
+const MOTO_KW = ['moto', 'motogp', 'superbike', 'sbk', 'scooter', 'casco', 'ducati',
+  'yamaha', 'honda', 'kawasaki', 'aprilia', 'ktm', 'bmw motorrad', 'harley',
+  'triumph', 'guzzi', 'mv agusta', 'bagnaia', 'marquez', 'morbidelli', 'enduro',
+  'motocross', 'scrambler', 'naked', 'maxiscooter', 'due ruote', 'biker', 'eicma'];
+
+// parole che indicano AUTO/altro (da escludere anche se contengono "moto" tipo "motore")
+const NOT_MOTO_KW = ['automobile', 'suv', 'berlina', 'formula 1', 'formula1', 'f1 ',
+  'gran premio di f1', 'fiat', 'volkswagen', 'tesla', 'ferrari ', 'lamborghini',
+  'autovettura', 'patente b', 'calcio', 'serie a', 'champions'];
+
+function isMoto(title: string): boolean {
+  const t = title.toLowerCase();
+  if (NOT_MOTO_KW.some((w) => t.includes(w))) return false;
+  return MOTO_KW.some((w) => t.includes(w));
+}
 
 function extract(tag: string, xml: string): string {
   const re = new RegExp(`<${tag}[^>]*>([\\s\\S]*?)</${tag}>`, 'i');
@@ -44,18 +62,18 @@ export async function GET() {
         });
         if (!res.ok) return;
         const xml = await res.text();
-        const items = xml.split(/<item>/i).slice(1, 8);
+        const items = xml.split(/<item>/i).slice(1, 12);
         items.forEach((raw) => {
           const block = raw.split(/<\/item>/i)[0];
           const title = extract('title', block);
           const link = extract('link', block).replace(/<[^>]+>/g, '').trim();
           const pubDate = extract('pubDate', block);
           const img = extractImg(block);
-          // Solo notizie con titolo, link E immagine reale (niente fallback grigio)
-          if (title && link && !seen.has(link)) {
-            seen.add(link);
-            all.push({ t: title, src: feed.src, url: link, img, pubDate });
-          }
+          if (!title || !link || seen.has(link)) return;
+          // se la fonte è generalista, tieni solo articoli moto
+          if (feed.motoOnly && !isMoto(title)) return;
+          seen.add(link);
+          all.push({ t: title, src: feed.src, url: link, img, pubDate });
         });
       } catch {}
     })
