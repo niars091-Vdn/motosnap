@@ -4,9 +4,9 @@ export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 const FEEDS = [
-  { url: 'https://www.moto.it/rss', src: 'Moto.it' },
-  { url: 'https://www.motociclismo.it/rss', src: 'Motociclismo' },
-  { url: 'https://www.insella.it/feed', src: 'Insella.it' },
+  { url: 'https://www.moto.it/rss/news.xml', src: 'Moto.it' },
+  { url: 'https://www.moto.it/rss/news-motogp.xml', src: 'Moto.it MotoGP' },
+  { url: 'https://it.motor1.com/rss/news/all/', src: 'Motor1' },
 ];
 
 function extract(tag: string, xml: string): string {
