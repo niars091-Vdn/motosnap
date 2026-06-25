@@ -36,14 +36,25 @@ function extract(tag: string, xml: string): string {
 }
 
 function extractImg(xml: string): string {
-  let m = xml.match(/<media:content[^>]+url="([^"]+)"/i);
+  // 1. media:content
+  let m = xml.match(/<media:content[^>]+url=["']([^"']+)["']/i);
+  if (m && /\.(jpg|jpeg|png|webp)/i.test(m[1])) return m[1];
+  // 2. media:thumbnail
+  m = xml.match(/<media:thumbnail[^>]+url=["']([^"']+)["']/i);
   if (m) return m[1];
-  m = xml.match(/<media:thumbnail[^>]+url="([^"]+)"/i);
+  // 3. enclosure immagine
+  m = xml.match(/<enclosure[^>]+url=["']([^"']+)["'][^>]*type=["']image/i);
   if (m) return m[1];
-  m = xml.match(/<enclosure[^>]+url="([^"]+)"[^>]*type="image/i);
-  if (m) return m[1];
+  // 4. PRIMA immagine dentro content:encoded (tipico WordPress/Motoblog)
+  const ce = xml.match(/<content:encoded[^>]*>([\s\S]*?)<\/content:encoded>/i);
+  if (ce) {
+    const im = ce[1].match(/<img[^>]+src=["']([^"']+)["']/i);
+    if (im) return im[1];
+  }
+  // 5. qualsiasi <img> nel blocco (anche dentro description)
   m = xml.match(/<img[^>]+src=["']([^"']+)["']/i);
   if (m) return m[1];
+  // 6. url diretto a immagine
   m = xml.match(/https?:\/\/[^\s"'<>]+\.(?:jpg|jpeg|png|webp)/i);
   if (m) return m[0];
   return '';
