@@ -1422,6 +1422,38 @@ function answerQuiz(ans){
   document.getElementById('stStreak').textContent=streak;
 }
 
+  /* Immagine intelligente in base alle parole chiave del titolo */
+function imgForTitle(title){
+  const t=(title||'').toLowerCase();
+  const map=[
+    {k:['casco','helmet','integrale','modulare'],img:'1558618666-fcd25c85cd64'},
+    {k:['motogp','gp ','pista','circuit','qualific','gara','bagnaia','marquez'],img:'1568772585407-9361f9bf3a87'},
+    {k:['superbike','sbk'],img:'1571019613454-1cb2f99b2d8b'},
+    {k:['motocross','cross','enduro','offroad','fuoristrada'],img:'1525160354320-d8e92641c563'},
+    {k:['elettric','electric','ev','battery','batteria'],img:'1593476550610-87baa860004a'},
+    {k:['scarico','exhaust','akrapovic','termignoni'],img:'1558969479-b0e5e31fa25a'},
+    {k:['ducati','panigale','monster','multistrada'],img:'1568772585407-9361f9bf3a87'},
+    {k:['bmw','gs '],img:'1558981403-c5f9899a28bc'},
+    {k:['yamaha','mt-','tracer','tenere'],img:'1547549082-6bc09f2049ae'},
+    {k:['honda','africa twin','cbr'],img:'1591637333184-19aa84b3e01f'},
+    {k:['kawasaki','ninja','z900','z650'],img:'1568772585407-9361f9bf3a87'},
+    {k:['ktm','duke','adventure'],img:'1547549082-6bc09f2049ae'},
+    {k:['aprilia','rs660','tuono'],img:'1558969479-b0e5e31fa25a'},
+    {k:['scooter','sh ','tmax','xmax'],img:'1449426468159-d96dbf08f19f'},
+    {k:['gomm','pneumatic','pirelli','michelin'],img:'1503376780353-7e6692767b70'},
+    {k:['guant','giacca','tuta','abbigliament'],img:'1551698618-1dfe5d97d256'},
+    {k:['naked','street'],img:'1609630875171-b1321377ee65'},
+    {k:['sportiv','supersport','race'],img:'1503376780353-7e6692767b70'},
+    {k:['adventure','viagg','touring','maxi'],img:'1547549082-6bc09f2049ae'},
+    {k:['cruiser','custom','harley'],img:'1568772585407-9361f9bf3a87'},
+  ];
+  for(const e of map){
+    if(e.k.some(w=>t.includes(w)))return `https://images.unsplash.com/photo-${e.img}?w=600&q=80`;
+  }
+  // Nessuna parola chiave → moto generica a rotazione (in base alla lunghezza del titolo)
+  const generic=['1558981403-c5f9899a28bc','1609630875171-b1321377ee65','1503376780353-7e6692767b70','1591637333184-19aa84b3e01f','1547549082-6bc09f2049ae'];
+  return `https://images.unsplash.com/photo-${generic[t.length%generic.length]}?w=600&q=80`;
+}
 /* ═══ NEWS ═══ */
 async function renderNews(){
   document.getElementById('newsFeat').innerHTML=`<div style="height:170px;border-radius:20px;background:var(--bg2);display:flex;align-items:center;justify-content:center;margin-bottom:14px;box-shadow:var(--card-shadow)"><div style="text-align:center"><div style="width:26px;height:26px;border:2.5px solid var(--bd);border-top-color:var(--red);border-radius:50%;margin:0 auto 10px;animation:spin .8s linear infinite;"></div><div style="font-size:12px;font-weight:600;letter-spacing:.06em;color:var(--tx3)">Caricamento news…</div></div></div>`;
@@ -1433,10 +1465,10 @@ async function renderNews(){
   if(!news.length)news=NEWS_FB.map(x=>({t:x.t,src:x.src,time:x.time,img:x.img,url:x.url}));
   const f=news[0];const rest=news.slice(1);
   const fb='https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=600&q=80';
-  const fi=f.img||fb;
+  const fi=f.img||imgForTitle(f.t);
   document.getElementById('newsFeat').innerHTML=`<div class="news-feat" onclick="if('${f.url}'&&'${f.url}'!=='#')window.open('${f.url}','_blank')"><img src="${fi}" alt="" onerror="this.src='${fb}'"><div class="news-feat-ov"></div><div class="news-feat-body"><div class="news-feat-src">${f.src} · ${f.time}</div><div class="news-feat-t">${f.t}</div></div></div>`;
   document.getElementById('newsList').innerHTML=rest.map(n=>{
-    const ti=n.img||'https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=200&q=60';
+    const ti=n.img||imgForTitle(n.t);
     return`<div class="news-item" onclick="if('${n.url}'&&'${n.url}'!=='#')window.open('${n.url}','_blank')"><img class="news-thumb" src="${ti}" alt="" onerror="this.src='https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=200&q=60'"><div><div class="news-src">${n.src} · ${n.time}</div><div class="news-t">${n.t}</div></div><span style="color:var(--tx3);font-size:16px;margin-left:auto;flex-shrink:0">›</span></div>`;
   }).join('');
 }
