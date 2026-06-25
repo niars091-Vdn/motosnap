@@ -17,14 +17,21 @@ function extract(tag: string, xml: string): string {
 }
 
 function extractImg(xml: string): string {
+  // 1. media:content
   let m = xml.match(/<media:content[^>]+url="([^"]+)"/i);
   if (m) return m[1];
+  // 2. media:thumbnail
   m = xml.match(/<media:thumbnail[^>]+url="([^"]+)"/i);
   if (m) return m[1];
+  // 3. enclosure immagine
   m = xml.match(/<enclosure[^>]+url="([^"]+)"[^>]*type="image/i);
   if (m) return m[1];
-  m = xml.match(/<img[^>]+src="([^"]+)"/i);
+  // 4. image dentro content:encoded o description (anche CDATA)
+  m = xml.match(/<img[^>]+src=["']([^"']+)["']/i);
   if (m) return m[1];
+  // 5. url generico a immagine .jpg/.png nel blocco
+  m = xml.match(/https?:\/\/[^\s"'<>]+\.(?:jpg|jpeg|png|webp)/i);
+  if (m) return m[0];
   return '';
 }
 
