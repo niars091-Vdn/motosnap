@@ -47,7 +47,7 @@ export async function GET() {
         });
         if (!res.ok) return;
         const xml = await res.text();
-        const items = xml.split(/<item>/i).slice(1, 5);
+        const items = xml.split(/<item>/i).slice(1, 8);
         items.forEach((raw) => {
           const block = raw.split(/<\/item>/i)[0];
           const title = extract('title', block);
@@ -69,7 +69,7 @@ export async function GET() {
   });
 
   return NextResponse.json(
-    { items: all.slice(0, 6) },
+    { items: all.slice(0, 15) },
     { headers: { 'Cache-Control': 's-maxage=600, stale-while-revalidate' } }
   );
 }
