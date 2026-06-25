@@ -6,7 +6,8 @@ export const revalidate = 0;
 const FEEDS = [
   { url: 'https://www.moto.it/rss/news.xml', src: 'Moto.it' },
   { url: 'https://www.moto.it/rss/news-motogp.xml', src: 'Moto.it MotoGP' },
-  { url: 'https://it.motor1.com/rss/news/all/', src: 'Motor1' },
+  { url: 'https://www.moto.it/rss/news-superbike.xml', src: 'Moto.it SBK' },
+  { url: 'https://www.moto.it/rss/news-motocross.xml', src: 'Moto.it MX' },
 ];
 
 function extract(tag: string, xml: string): string {
@@ -17,19 +18,14 @@ function extract(tag: string, xml: string): string {
 }
 
 function extractImg(xml: string): string {
-  // 1. media:content
   let m = xml.match(/<media:content[^>]+url="([^"]+)"/i);
   if (m) return m[1];
-  // 2. media:thumbnail
   m = xml.match(/<media:thumbnail[^>]+url="([^"]+)"/i);
   if (m) return m[1];
-  // 3. enclosure immagine
   m = xml.match(/<enclosure[^>]+url="([^"]+)"[^>]*type="image/i);
   if (m) return m[1];
-  // 4. image dentro content:encoded o description (anche CDATA)
   m = xml.match(/<img[^>]+src=["']([^"']+)["']/i);
   if (m) return m[1];
-  // 5. url generico a immagine .jpg/.png nel blocco
   m = xml.match(/https?:\/\/[^\s"'<>]+\.(?:jpg|jpeg|png|webp)/i);
   if (m) return m[0];
   return '';
@@ -37,6 +33,7 @@ function extractImg(xml: string): string {
 
 export async function GET() {
   const all: any[] = [];
+  const seen = new Set<string>();
 
   await Promise.all(
     FEEDS.map(async (feed) => {
@@ -54,7 +51,9 @@ export async function GET() {
           const link = extract('link', block).replace(/<[^>]+>/g, '').trim();
           const pubDate = extract('pubDate', block);
           const img = extractImg(block);
-          if (title && link) {
+          // Solo notizie con titolo, link E immagine reale (niente fallback grigio)
+          if (title && link && img && !seen.has(link)) {
+            seen.add(link);
             all.push({ t: title, src: feed.src, url: link, img, pubDate });
           }
         });
