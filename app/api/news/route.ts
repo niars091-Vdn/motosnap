@@ -52,7 +52,7 @@ export async function GET() {
           const pubDate = extract('pubDate', block);
           const img = extractImg(block);
           // Solo notizie con titolo, link E immagine reale (niente fallback grigio)
-          if (title && link && img && !seen.has(link)) {
+          if (title && link && !seen.has(link)) {
             seen.add(link);
             all.push({ t: title, src: feed.src, url: link, img, pubDate });
           }
